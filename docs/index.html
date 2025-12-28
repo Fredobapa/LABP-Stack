@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>LABP-Stack — AI Voice Portfolio</title>
+  <title>LABP-Stack — AI Voice Stack</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -12,27 +12,13 @@
       max-width: 900px;
       margin: auto;
     }
-
-    h1, h2 {
-      color: #38bdf8;
-    }
-
+    h1, h2 { color: #38bdf8; }
     .box {
       background: #020617;
       padding: 20px;
       margin: 20px 0;
       border-radius: 8px;
     }
-
-    code {
-      color: #a5f3fc;
-    }
-
-    a {
-      color: #38bdf8;
-      text-decoration: none;
-    }
-
     input {
       width: 100%;
       padding: 10px;
@@ -40,7 +26,6 @@
       border-radius: 4px;
       border: none;
     }
-
     button {
       padding: 10px 15px;
       background: #38bdf8;
@@ -49,107 +34,63 @@
       cursor: pointer;
       font-weight: bold;
     }
-
-    button:hover {
-      background: #0ea5e9;
-    }
+    button:hover { background: #0ea5e9; }
   </style>
 </head>
 
 <body>
 
-  <h1>LABP-Stack — AI Voice Stack</h1>
-  <p>
-    I build AI-driven systems focused on voice, automation, and real-world operations.
-  </p>
+<h1>LABP-Stack — AI Voice Stack</h1>
+<p>Frontend calling a real backend with safe fallback.</p>
 
-  <div class="box">
-    <h2>Project — Voice AI Gateway</h2>
-    <p>
-      A modular AI system that processes voice input, detects intent,
-      applies decision logic, and generates responses.
-    </p>
-  </div>
- 
-  <div class="box">
-   <h2>Project — RAG Knowledge Base</h2>
-   <p>
-    A retrieval-augmented generation system that provides accurate,
-    source-backed answers from structured documents.
-   </p>
- </div>
+<div class="box">
+  <h2>Try it</h2>
 
-  <div class="box">
-    <h2>How it works</h2>
-    <p>
-      <code>Voice Input → Speech-to-Text → Intent Detection → Decision Logic → Response</code>
-    </p>
-  </div>
+  <input
+    id="userInput"
+    type="text"
+    placeholder="Type something like: I want to know the price"
+  />
 
-  <div class="box">
-    <h2>Example interaction</h2>
-    <p><strong>User:</strong> "I want to know the price"</p>
-    <p><strong>Intent:</strong> PRICING</p>
-    <p><strong>System response:</strong> "Our pricing starts from $X depending on your needs."</p>
-  </div>
+  <button onclick="run()">Send</button>
 
-  <div class="box">
-    <h2>Try it (simulated)</h2>
-
-    <input
-      id="userInput"
-      type="text"
-      placeholder="Type something like: I want to know the price"
-    />
-
-    <button onclick="runSimulation()">Send</button>
-
-    <p id="result" style="margin-top: 15px;"></p>
-  </div>
-
-  <div class="box">
-  <h2>Links</h2>
-  <ul>
-    <li>
-      <a href="https://github.com/fredobapa/LABP-Stack/tree/main/projects/voice-ai-gateway">
-        Project README
-      </a>
-    </li>
-    <li>
-      <a href="https://github.com/fredobapa/LABP-Stack/blob/main/docs/architectures/voice-ai-gateway.md">
-        Architecture
-      </a>
-    </li>
-    <li>
-      <a href="https://github.com/fredobapa/LABP-Stack/blob/main/docs/decisions/0002-intent-map.md">
-        Intent Map
-      </a>
-    </li>
-  </ul>
+  <p id="result" style="margin-top: 15px;"></p>
 </div>
 
-  <script>
-    function runSimulation() {
-      const input = document.getElementById("userInput").value.toLowerCase();
-      let intent = "UNKNOWN";
-      let response = "I'm not sure I understood. Could you please rephrase?";
+<script>
+async function run() {
+  const text = document.getElementById("userInput").value;
+  const result = document.getElementById("result");
 
-      if (input.includes("price") || input.includes("cost")) {
-        intent = "PRICING";
-        response = "Our pricing starts from $X depending on your needs.";
-      } else if (input.includes("open") || input.includes("time") || input.includes("hour")) {
-        intent = "AVAILABILITY";
-        response = "We are available from 9am to 6pm.";
-      } else if (input.includes("help") || input.includes("support")) {
-        intent = "SUPPORT";
-        response = "Sure, I can help you. Please describe your issue.";
-      }
+  // Fallback
+  let intent = "UNKNOWN";
+  let response = "Fallback: backend not available.";
 
-      document.getElementById("result").innerHTML =
-        "<strong>Detected intent:</strong> " + intent +
-        "<br/><strong>System response:</strong> " + response;
+  try {
+    const res = await fetch("https://labp-backend-production.up.railway.app/analyze", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ text })
+    });
+
+    if (!res.ok) throw new Error("Backend error");
+
+    const data = await res.json();
+    intent = data.intent;
+    response = data.response;
+
+  } catch (err) {
+    if (text.toLowerCase().includes("price")) {
+      intent = "PRICING";
+      response = "Fallback pricing response.";
     }
-  </script>
+  }
+
+  result.innerHTML =
+    "<strong>Detected intent:</strong> " + intent +
+    "<br/><strong>System response:</strong> " + response;
+}
+</script>
 
 </body>
 </html>
