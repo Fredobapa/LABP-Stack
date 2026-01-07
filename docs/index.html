@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>LABP-Stack — AI Voice Stack</title>
+  <title>LABP-Stack — VoIP, AI & Cloud Systems</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <style>
     :root {
       --bg: #0f172a;
@@ -11,63 +12,101 @@
       --accent: #38bdf8;
       --text: #e5e7eb;
       --muted: #94a3b8;
+      --border: #1f2a44;
     }
+
     body {
-      font-family: Arial, sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
       background: var(--bg);
       color: var(--text);
-      padding: 40px;
-      max-width: 1000px;
+      max-width: 1100px;
       margin: auto;
+      padding: 40px 24px;
     }
-    h1, h2, h3 { color: var(--accent); }
-    p { color: var(--muted); line-height: 1.6; }
-    .box {
-      background: var(--panel);
-      padding: 20px;
-      margin: 20px 0;
-      border-radius: 10px;
+
+    h1, h2, h3 {
+      color: var(--accent);
+      margin-top: 0;
     }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 16px;
-    }
-    input, button {
-      padding: 10px;
-      font-size: 16px;
-      border-radius: 6px;
-      border: none;
-    }
-    input { width: 100%; }
-    button {
-      background: var(--accent);
-      color: #000;
-      cursor: pointer;
-      font-weight: bold;
-    }
-    button:hover { opacity: 0.9; }
-    .result {
-      margin-top: 12px;
-      white-space: pre-line;
-      color: var(--text);
-    }
-    a { color: var(--accent); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    .footer {
-      margin-top: 40px;
-      font-size: 14px;
+
+    p {
       color: var(--muted);
+      line-height: 1.6;
     }
+
     .tag {
       display: inline-block;
       background: #0b1220;
-      border: 1px solid #1f2a44;
-      color: var(--muted);
-      padding: 4px 8px;
+      border: 1px solid var(--border);
+      padding: 4px 10px;
       border-radius: 999px;
-      margin-right: 6px;
       font-size: 12px;
+      margin-right: 6px;
+      color: var(--muted);
+    }
+
+    .section {
+      margin-top: 48px;
+    }
+
+    .box {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      margin-top: 20px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    input, button {
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: none;
+    }
+
+    input {
+      width: 100%;
+    }
+
+    button {
+      background: var(--accent);
+      color: #000;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 12px;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .result {
+      margin-top: 16px;
+      white-space: pre-line;
+      font-family: monospace;
+      color: var(--text);
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      margin-top: 80px;
+      font-size: 14px;
+      color: var(--muted);
+      text-align: center;
     }
   </style>
 </head>
@@ -77,81 +116,136 @@
   <!-- HERO -->
   <h1>LABP-Stack</h1>
   <p>
-    Personal AI stack focused on voice, intent detection and real-world automation.
+    A production-focused stack for intelligent <strong>voice and communication systems</strong>,
+    combining <strong>VoIP</strong>, <strong>AI-based intent detection</strong>,
+    <strong>automation workflows</strong> and <strong>cloud infrastructure</strong>.
   </p>
+
   <div>
-    <span class="tag">Frontend: Static (GitHub Pages)</span>
-    <span class="tag">Backend: Node.js</span>
-    <span class="tag">Cloud: Railway</span>
+    <span class="tag">VoIP & Real-Time Communications</span>
+    <span class="tag">AI & Intent Understanding</span>
+    <span class="tag">Automation & Orchestration</span>
+    <span class="tag">Cloud & AWS-Oriented</span>
+  </div>
+
+  <!-- PHILOSOPHY -->
+  <div class="section box">
+    <h2>Stack Philosophy</h2>
+    <p>
+      LABP-Stack is not a collection of isolated demos.
+      It is a coherent technical platform designed around real-world communication systems,
+      where <strong>voice is the primary interface</strong>,
+      AI acts as a <strong>decision layer</strong>,
+      and automation orchestrates actions across cloud-hosted services.
+    </p>
+    <p>
+      The focus is on practical architectures, production readiness and extensibility,
+      rather than theoretical or chat-only AI applications.
+    </p>
+  </div>
+
+  <!-- ARCHITECTURE -->
+  <div class="section box">
+    <h2>Architecture Overview</h2>
+    <pre style="color:#94a3b8; line-height:1.5;">
+Voice / Text Input
+        ↓
+AI Intent Detection
+        ↓
+Decision Logic
+        ↓
+Automation & Orchestration
+        ↓
+Cloud Services (AWS / PaaS)
+    </pre>
+    <p>
+      This layered architecture allows the same backend logic to be reused across
+      IVR systems, voice agents, automated workflows and future communication channels.
+    </p>
   </div>
 
   <!-- PROJECTS -->
-  <div class="box">
+  <div class="section">
     <h2>Projects</h2>
+
     <div class="grid">
+
       <div class="box">
-        <h3>Voice / Intent API</h3>
+        <h3>Intent Detection API</h3>
+        <p><strong>Status:</strong> Live (Production)</p>
         <p>
-          A production-ready API that detects user intent from text and returns
-          structured responses. Deployed in the cloud and consumed by this demo.
+          A production-ready backend API that classifies user intent in real time.
+          Deployed as an always-on cloud service and consumed by the live frontend demo.
+        </p>
+        <p>
+          Acts as the <strong>decision brain</strong> of the stack,
+          enabling automation and intelligent routing.
         </p>
       </div>
+
       <div class="box">
-        <h3>RAG Knowledge Base (WIP)</h3>
+        <h3>AI Voice Gateway</h3>
+        <p><strong>Status:</strong> Design & Proof of Concept</p>
         <p>
-          Retrieval-Augmented Generation system for grounded answers from
-          documentation and internal knowledge.
+          A voice-first gateway architecture designed to bridge VoIP systems
+          with AI-driven intent analysis and backend decision logic.
+        </p>
+        <p>
+          Focused on IVR modernization, virtual agents and intelligent call flows.
         </p>
       </div>
+
+      <div class="box">
+        <h3>RAG Knowledge Assistant</h3>
+        <p><strong>Status:</strong> Work in Progress</p>
+        <p>
+          A Retrieval-Augmented Generation assistant designed to provide
+          grounded answers from structured knowledge sources.
+        </p>
+        <p>
+          Intended to integrate directly with the Intent Detection API.
+        </p>
+      </div>
+
     </div>
   </div>
 
   <!-- LIVE DEMO -->
-  <div class="box">
-    <h2>Live Demo (Production)</h2>
-    <p>Type a message and the frontend will call the backend running in Railway.</p>
+  <div class="section box">
+    <h2>Live Demo — Intent Detection (Production)</h2>
+    <p>
+      This demo calls a backend API deployed in the cloud.
+      Type a message and see how intent detection works in real time.
+    </p>
 
     <input id="textInput" type="text" placeholder="Try: I want to know the price" />
-    <br /><br />
     <button onclick="send()">Send</button>
 
     <div class="result" id="result"></div>
   </div>
 
   <!-- LINKS -->
-  <div class="box">
+  <div class="section box">
     <h2>Links</h2>
     <ul>
-      <li>
-        <a href="https://github.com/Fredobapa/LABP-Stack" target="_blank">
-          Frontend Repository (LABP-Stack)
-        </a>
-      </li>
-      <li>
-        <a href="https://github.com/Fredobapa/labp-backend" target="_blank">
-          Backend Repository (labp-backend)
-        </a>
-      </li>
-      <li>
-        <a href="https://labp-backend-production.up.railway.app/" target="_blank">
-          Backend Health Check (Railway)
-        </a>
-      </li>
+      <li><a href="https://github.com/Fredobapa/LABP-Stack" target="_blank">Frontend Repository (LABP-Stack)</a></li>
+      <li><a href="https://github.com/Fredobapa/labp-backend" target="_blank">Backend Repository (Intent API)</a></li>
+      <li><a href="https://labp-backend-production.up.railway.app/" target="_blank">Backend Health Check (Railway)</a></li>
     </ul>
   </div>
 
   <!-- SCRIPT -->
   <script>
     async function send() {
-      const text = document.getElementById("textInput").value;
+      const input = document.getElementById("textInput");
       const result = document.getElementById("result");
 
-      if (!text) {
-        result.innerText = "Please type something first.";
+      if (!input.value) {
+        result.innerText = "Please type a message first.";
         return;
       }
 
-      result.innerText = "Thinking...";
+      result.innerText = "Processing...";
 
       try {
         const response = await fetch(
@@ -159,7 +253,7 @@
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ text })
+            body: JSON.stringify({ text: input.value })
           }
         );
 
@@ -169,16 +263,15 @@
           "Intent: " + data.intent + "\n" +
           "Response: " + data.response;
 
-      } catch (err) {
+      } catch (error) {
         result.innerText = "Error contacting backend.";
       }
     }
   </script>
 
-  <div class="footer">
-    © LABP-Stack — Live demo powered by a production backend.
-  </div>
+  <footer>
+    LABP-Stack — Intelligent Voice, AI and Cloud Systems
+  </footer>
 
 </body>
 </html>
-
