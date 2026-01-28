@@ -202,6 +202,25 @@ Focused on building production-grade intelligent communication systems.
 LABP-Stack represents a practical approach to modern communication systems:  
 **Voice as interface. AI as decision. Automation as execution. Cloud as foundation.**
 
+## 📈 Logging & Observability
+
+LABP-Stack services are designed with production observability in mind.
+
+Current capabilities include:
+
+- Structured application logs for every request  
+- Intent detection event tracing  
+- Error and exception logging  
+- Cloud-ready log streams (Railway / AWS CloudWatch compatible)  
+
+This observability layer enables:
+
+- Real-time operational monitoring  
+- Automated alerting  
+- Performance analysis  
+- Scalable incident response workflows
+
+
 ---
 
 
