@@ -44,7 +44,7 @@ LABP-Stack is built around the following principles:
 
 ## 🏗️ Architecture Overview
 
-<img width="455" height="418" alt="image" src="https://github.com/user-attachments/assets/821a055d-fd16-4905-b78a-f808c990f73f" />
+![LABP-Stack Architecture](docs/diagrams/labp-architecture-v1.png)
 
 
 This architecture allows the same intelligence layer to be reused across IVR systems, voice agents, omnichannel routing and automated operational workflows.
