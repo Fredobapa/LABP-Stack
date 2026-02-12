@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AWS Blueprint — LABP-Stack</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      background: #0f172a;
+      color: #e5e7eb;
+      max-width: 900px;
+      margin: auto;
+      padding: 40px;
+      line-height: 1.6;
+    }
+
+    h1, h2 {
+      color: #38bdf8;
+    }
+
+    pre {
+      background: #020617;
+      padding: 16px;
+      border-radius: 8px;
+      overflow-x: auto;
+    }
+
+    a {
+      color: #38bdf8;
+    }
+  </style>
+</head>
+<body>
+
+<h1>AWS Blueprint — LABP-Stack</h1>
+
+<p>
+Production-ready AWS architecture for VoIP, AI and Automation systems.
+</p>
+
+<h2>Core Components</h2>
+
+<ul>
+  <li>VPC + Subnets</li>
+  <li>EC2 (Asterisk / Gateways)</li>
+  <li>Load Balancer</li>
+  <li>RDS / DynamoDB</li>
+  <li>S3 (Recordings)</li>
+  <li>CloudWatch</li>
+</ul>
+
+<h2>Architecture</h2>
+
+<pre>
+Users
+ ↓
+ALB
+ ↓
+API (Railway / AWS)
+ ↓
+Asterisk / AI
+ ↓
+Automation / Storage
+</pre>
+
+<h2>Security</h2>
+
+<ul>
+  <li>TLS / SRTP</li>
+  <li>IAM Roles</li>
+  <li>Security Groups</li>
+  <li>WAF</li>
+</ul>
+
+<h2>Status</h2>
+
+<p>MVP + Production Ready</p>
+
+</body>
+</html>
+
