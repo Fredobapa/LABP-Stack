@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>LABP-Stack — VoIP, AI & Cloud Systems</title>
+  <title>LABP-Stack — VoIP, AI & Cloud Architecture</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <style>
@@ -16,7 +16,7 @@
     }
 
     body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: system-ui, sans-serif;
       background: var(--bg);
       color: var(--text);
       max-width: 1100px;
@@ -90,16 +90,11 @@
       margin-top: 16px;
       white-space: pre-line;
       font-family: monospace;
-      color: var(--text);
     }
 
     a {
       color: var(--accent);
       text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
     }
 
     footer {
@@ -113,165 +108,176 @@
 
 <body>
 
-  <!-- HERO -->
-  <h1>LABP-Stack</h1>
+<!-- HERO -->
+<h1>LABP-Stack</h1>
+
+<p><strong>VoIP & Cloud Architect | AI-Driven Communications | AWS & Automation Specialist</strong></p>
+
+<p>
+Production-grade platform for building intelligent communication systems.
+Focused on stability, observability, automation and real-world operations.
+</p>
+
+<div>
+  <span class="tag">VoIP</span>
+  <span class="tag">AI</span>
+  <span class="tag">AWS</span>
+  <span class="tag">Automation</span>
+  <span class="tag">High Availability</span>
+</div>
+
+<!-- ABOUT -->
+<div class="section box">
+  <h2>About</h2>
+
   <p>
-    A production-focused stack for intelligent <strong>voice and communication systems</strong>,
-    combining <strong>VoIP</strong>, <strong>AI-based intent detection</strong>,
-    <strong>automation workflows</strong> and <strong>cloud infrastructure</strong>.
+    I design, migrate, and stabilize communication platforms for companies that
+    rely on telephony in their daily operations.
   </p>
 
-  <div>
-    <span class="tag">VoIP & Real-Time Communications</span>
-    <span class="tag">AI & Intent Understanding</span>
-    <span class="tag">Automation & Orchestration</span>
-    <span class="tag">Cloud & AWS-Oriented</span>
-  </div>
+  <p>
+    My focus is transforming unstable or legacy systems into reliable,
+    scalable and observable cloud-native platforms.
+  </p>
+</div>
 
-  <!-- PHILOSOPHY -->
-  <div class="section box">
-    <h2>Stack Philosophy</h2>
-    <p>
-      LABP-Stack is not a collection of isolated demos.
-      It is a coherent technical platform designed around real-world communication systems,
-      where <strong>voice is the primary interface</strong>,
-      AI acts as a <strong>decision layer</strong>,
-      and automation orchestrates actions across cloud-hosted services.
-    </p>
-    <p>
-      The focus is on practical architectures, production readiness and extensibility,
-      rather than theoretical or chat-only AI applications.
-    </p>
-  </div>
+<!-- SERVICES -->
+<div class="section box">
+  <h2>Services</h2>
 
-  <!-- ARCHITECTURE -->
-  <div class="section box">
-    <h2>Architecture Overview</h2>
-    <pre style="color:#94a3b8; line-height:1.5;">
-Voice / Text Input
-        ↓
-AI Intent Detection
-        ↓
-Decision Logic
-        ↓
-Automation & Orchestration
-        ↓
-Cloud Services (AWS / PaaS)
-    </pre>
-    <p>
-      This layered architecture allows the same backend logic to be reused across
-      IVR systems, voice agents, automated workflows and future communication channels.
-    </p>
-  </div>
+  <ul>
+    <li><strong>System Health Check</strong> — Technical diagnosis & roadmap</li>
+    <li><strong>Cloud VoIP Modernization</strong> — Migration & implementation</li>
+    <li><strong>Managed Communications</strong> — Continuous support</li>
+  </ul>
+</div>
 
-  <!-- PROJECTS -->
-  <div class="section">
-    <h2>Projects</h2>
+<!-- ARCHITECTURE -->
+<div class="section box">
+  <h2>Architecture</h2>
 
-    <div class="grid">
+  <pre style="color:#94a3b8;">
+Voice / Text
+     ↓
+Intent API
+     ↓
+Decision Layer
+     ↓
+Automation
+     ↓
+Cloud Services (AWS)
+  </pre>
 
-      <div class="box">
-        <h3>Intent Detection API</h3>
-        <p><strong>Status:</strong> Live (Production)</p>
-        <p>
-          A production-ready backend API that classifies user intent in real time.
-          Deployed as an always-on cloud service and consumed by the live frontend demo.
-        </p>
-        <p>
-          Acts as the <strong>decision brain</strong> of the stack,
-          enabling automation and intelligent routing.
-        </p>
-      </div>
+  <p>
+    Reusable backend logic across IVR, voice agents and automation workflows.
+  </p>
+</div>
 
-      <div class="box">
-        <h3>AI Voice Gateway</h3>
-        <p><strong>Status:</strong> Design & Proof of Concept</p>
-        <p>
-          A voice-first gateway architecture designed to bridge VoIP systems
-          with AI-driven intent analysis and backend decision logic.
-        </p>
-        <p>
-          Focused on IVR modernization, virtual agents and intelligent call flows.
-        </p>
-      </div>
+<!-- PROJECTS -->
+<div class="section">
+  <h2>Projects</h2>
 
-      <div class="box">
-        <h3>RAG Knowledge Assistant</h3>
-        <p><strong>Status:</strong> Work in Progress</p>
-        <p>
-          A Retrieval-Augmented Generation assistant designed to provide
-          grounded answers from structured knowledge sources.
-        </p>
-        <p>
-          Intended to integrate directly with the Intent Detection API.
-        </p>
-      </div>
+  <div class="grid">
 
+    <div class="box">
+      <h3>Intent Detection API</h3>
+      <p>Status: Production</p>
+      <p>Cloud-hosted intent classification service.</p>
+      <p>
+        <a href="https://labp-backend-production.up.railway.app/" target="_blank">
+          Live Endpoint
+        </a>
+      </p>
     </div>
+
+    <div class="box">
+      <h3>AI Voice Gateway</h3>
+      <p>Status: PoC</p>
+      <p>VoIP + AI conversational gateway architecture.</p>
+    </div>
+
+    <div class="box">
+      <h3>RAG Assistant</h3>
+      <p>Status: In Progress</p>
+      <p>Knowledge-based automation assistant.</p>
+    </div>
+
   </div>
+</div>
 
-  <!-- LIVE DEMO -->
-  <div class="section box">
-    <h2>Live Demo — Intent Detection (Production)</h2>
-    <p>
-      This demo calls a backend API deployed in the cloud.
-      Type a message and see how intent detection works in real time.
-    </p>
+<!-- LIVE DEMO -->
+<div class="section box">
+  <h2>Live Demo — Intent API</h2>
 
-    <input id="textInput" type="text" placeholder="Try: I want to know the price" />
-    <button onclick="send()">Send</button>
+  <input id="textInput" type="text" placeholder="Try: I want to know the price" />
+  <button onclick="send()">Send</button>
 
-    <div class="result" id="result"></div>
-  </div>
+  <div class="result" id="result"></div>
+</div>
 
-  <!-- LINKS -->
-  <div class="section box">
-    <h2>Links</h2>
-    <ul>
-      <li><a href="https://github.com/Fredobapa/LABP-Stack" target="_blank">Frontend Repository (LABP-Stack)</a></li>
-      <li><a href="https://github.com/Fredobapa/labp-backend" target="_blank">Backend Repository (Intent API)</a></li>
-      <li><a href="https://labp-backend-production.up.railway.app/" target="_blank">Backend Health Check (Railway)</a></li>
-    </ul>
-  </div>
+<!-- CONTACT -->
+<div class="section box">
+  <h2>Contact</h2>
 
-  <!-- SCRIPT -->
-  <script>
-    async function send() {
-      const input = document.getElementById("textInput");
-      const result = document.getElementById("result");
+  <p>
+    Interested in collaboration or consulting?
+  </p>
 
-      if (!input.value) {
-        result.innerText = "Please type a message first.";
-        return;
+  <p>
+    📧 Email: <strong>ADD-YOUR-EMAIL</strong><br>
+    💼 GitHub: <a href="https://github.com/Fredobapa" target="_blank">Fredobapa</a>
+  </p>
+</div>
+
+<!-- LINKS -->
+<div class="section box">
+  <h2>Resources</h2>
+
+  <ul>
+    <li><a href="https://github.com/Fredobapa/LABP-Stack" target="_blank">Frontend Repo</a></li>
+    <li><a href="https://github.com/Fredobapa/labp-backend" target="_blank">Backend Repo</a></li>
+    <li><a href="docs/aws/aws-blueprint-v1.md" target="_blank">AWS Blueprint</a></li>
+  </ul>
+</div>
+
+<script>
+async function send() {
+  const input = document.getElementById("textInput");
+  const result = document.getElementById("result");
+
+  if (!input.value) {
+    result.innerText = "Type a message.";
+    return;
+  }
+
+  result.innerText = "Processing...";
+
+  try {
+    const res = await fetch(
+      "https://labp-backend-production.up.railway.app/analyze",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text: input.value })
       }
+    );
 
-      result.innerText = "Processing...";
+    const data = await res.json();
 
-      try {
-        const response = await fetch(
-          "https://labp-backend-production.up.railway.app/analyze",
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ text: input.value })
-          }
-        );
+    result.innerText =
+      "Intent: " + data.intent + "\n" +
+      "Response: " + data.response;
 
-        const data = await response.json();
+  } catch {
+    result.innerText = "Backend error.";
+  }
+}
+</script>
 
-        result.innerText =
-          "Intent: " + data.intent + "\n" +
-          "Response: " + data.response;
-
-      } catch (error) {
-        result.innerText = "Error contacting backend.";
-      }
-    }
-  </script>
-
-  <footer>
-    LABP-Stack — Intelligent Voice, AI and Cloud Systems
-  </footer>
+<footer>
+LABP-Stack — Production Communication Architecture
+</footer>
 
 </body>
 </html>
+
