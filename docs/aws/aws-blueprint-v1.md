@@ -2,7 +2,7 @@
 
 **Status: unimplemented design study**
 
-No AWS resources, Terraform, CloudFormation, CDK project, deployment pipeline, or verification evidence for this design are included in the public repositories. The current API prototype is written for Node.js/Express and was previously linked to Railway; that public endpoint is currently unavailable.
+No AWS resources, Terraform, CloudFormation, CDK project, deployment pipeline, or verification evidence for this design are included in the public repositories. The current Node.js/Express API prototype is deployed separately on Railway; that deployment is evidence of the API demo, not of this AWS design.
 
 ## Learning objective
 

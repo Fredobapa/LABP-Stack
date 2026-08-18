@@ -21,10 +21,10 @@ User types text in a static GitHub Pages site
 Implemented boundaries:
 
 - Text input only; there is no audio ingestion or speech-to-text implementation.
-- `PRICING` and `GREETING` are matched with simple substring checks; other input returns `UNKNOWN`.
+- `PRICING` and `GREETING` are matched with simple whole-word keyword rules; other input returns `UNKNOWN`.
 - There is no OpenAI or other model integration.
 - There is no n8n workflow, Asterisk integration, SBC configuration, persistence, or AWS deployment artifact.
-- The previously documented Railway endpoint is currently unavailable.
+- The API prototype is deployed on Railway and the portfolio checks its availability at runtime.
 
 ## Target direction (not implemented)
 

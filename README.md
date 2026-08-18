@@ -17,8 +17,8 @@ The repository contains personal work only. It does not represent an employer, c
 | Component | Evidence in the public repositories | Status |
 | --- | --- | --- |
 | Portfolio site | Static HTML/CSS/JavaScript in `docs/index.html`, published with GitHub Pages | Working static site |
-| Intent API | Small Node.js/Express API in [`Fredobapa/labp-backend`](https://github.com/Fredobapa/labp-backend); keyword rules for `PRICING` and `GREETING`, JSON responses, request IDs, and console logs | Prototype; deployment currently unavailable |
-| Browser-to-API demo | The portfolio sends text to `/analyze` and renders the returned intent and response | Implemented, but unavailable while the backend is offline |
+| Intent API | Small Node.js/Express API in [`Fredobapa/labp-backend`](https://github.com/Fredobapa/labp-backend); keyword rules for `PRICING` and `GREETING`, JSON responses, request IDs, and console logs | Deployed prototype on Railway |
+| Browser-to-API demo | The portfolio sends text to `/analyze` and renders the returned intent and response | Working demo with a runtime availability check |
 | Voice AI Gateway | Flow and component documentation only | Design study |
 | RAG Knowledge Assistant | Concept README only; no ingestion, retrieval, vector store, or generation code | Planned |
 | AWS deployment | Reference notes only; no deployed AWS resources or Infrastructure as Code in this repository | Design study |
@@ -89,10 +89,10 @@ SIP / WebRTC input
 
 ### Next
 
-- [ ] Add a backend README with API contract, limitations, and local setup
-- [ ] Remove committed `node_modules` from the backend and add `.gitignore`
-- [ ] Add automated tests for health, validation, `PRICING`, `GREETING`, and `UNKNOWN`
-- [ ] Restore or replace the hosted demo; show backend availability in the UI
+- [x] Add a backend README with API contract, limitations, and local setup
+- [x] Remove committed `node_modules` from the backend and add `.gitignore`
+- [x] Add automated tests for health, validation, `PRICING`, `GREETING`, and `UNKNOWN`
+- [x] Restore the hosted demo and show backend availability in the UI
 - [ ] Align the documented intent map with the intents implemented in code
 
 ### After the baseline is reliable
