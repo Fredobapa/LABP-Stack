@@ -1,5 +1,7 @@
 # Voice AI Gateway — Architecture
 
+**Status: design study; no voice gateway code is currently committed.**
+
 ## Overview
 This document describes the high-level architecture of the Voice AI Gateway system.
 
@@ -9,22 +11,22 @@ Voice Input → Speech-to-Text → Intent Detection → Decision Logic → Respo
 ## Components
 
 ### 1. Voice Input
-Accepts audio input from files, browser recordings, or external systems.
+Target capability: accept audio input from files, browser recordings, or external systems. Not implemented.
 
 ### 2. Speech-to-Text (ASR)
-Transforms raw audio into text for downstream processing.
+Target capability: transform raw audio into text for downstream processing. Not implemented.
 
 ### 3. Intent Detection
-Classifies the transcribed text into a predefined intent with a confidence score.
+Target capability: classify transcribed text into a predefined intent with a confidence score. The current backend only performs keyword matching and does not return confidence.
 
 ### 4. Decision Logic
-Applies business rules based on detected intent.
+Target capability: apply business rules based on detected intent. Not implemented beyond static responses in the API prototype.
 
 ### 5. Response Generation
-Generates a textual response and optionally converts it into voice.
+Target capability: generate a textual response and optionally convert it into voice. Voice generation is not implemented.
 
 ### 6. Output
-Returns the final response to the user as text or audio.
+Target capability: return the final response as text or audio. The current prototype returns JSON text only.
 
 ## Notes
 This architecture is intentionally modular to allow independent evolution of each component.

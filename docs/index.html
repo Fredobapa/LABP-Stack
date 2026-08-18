@@ -1,306 +1,142 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>LABP-Stack — VoIP, AI & Cloud Architecture</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LABP-Stack — Voice, RTC, Automation & Applied AI Lab</title>
   <style>
-    :root {
-      --bg: #0f172a;
-      --panel: #020617;
-      --accent: #38bdf8;
-      --text: #e5e7eb;
-      --muted: #94a3b8;
-      --border: #1f2a44;
-    }
-
-    body {
-      font-family: system-ui, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      max-width: 1100px;
-      margin: auto;
-      padding: 40px 24px;
-    }
-
-    h1, h2, h3 {
-      color: var(--accent);
-      margin-top: 0;
-    }
-
-    p {
-      color: var(--muted);
-      line-height: 1.6;
-    }
-
-    .tag {
-      display: inline-block;
-      background: #0b1220;
-      border: 1px solid var(--border);
-      padding: 4px 10px;
-      border-radius: 999px;
-      font-size: 12px;
-      margin-right: 6px;
-      color: var(--muted);
-    }
-
-    .section {
-      margin-top: 48px;
-    }
-
-    .box {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 24px;
-      margin-top: 20px;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-    }
-
-    input, button {
-      padding: 12px;
-      font-size: 16px;
-      border-radius: 8px;
-      border: none;
-    }
-
-    input {
-      width: 100%;
-    }
-
-    button {
-      background: var(--accent);
-      color: #000;
-      font-weight: 600;
-      cursor: pointer;
-      margin-top: 12px;
-    }
-
-    button:hover {
-      opacity: 0.9;
-    }
-
-    .result {
-      margin-top: 16px;
-      white-space: pre-line;
-      font-family: monospace;
-    }
-
-    a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-
-    footer {
-      margin-top: 80px;
-      font-size: 14px;
-      color: var(--muted);
-      text-align: center;
-    }
+    :root { color-scheme: dark; --bg:#0f172a; --panel:#111c33; --text:#e5e7eb; --muted:#a9b4c7; --accent:#38bdf8; --border:#283651; }
+    * { box-sizing:border-box; }
+    body { margin:0 auto; max-width:960px; padding:48px 24px 72px; background:var(--bg); color:var(--text); font:16px/1.65 system-ui,sans-serif; }
+    h1,h2,h3 { line-height:1.25; }
+    h1 { font-size:clamp(2.4rem,7vw,4.8rem); margin:.2em 0; }
+    h2 { margin-top:2.5rem; }
+    p,li { color:var(--muted); }
+    a { color:var(--accent); }
+    .eyebrow,.status { color:var(--accent); font-weight:700; letter-spacing:.04em; text-transform:uppercase; }
+    .lead { font-size:1.25rem; max-width:720px; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px; }
+    .card { padding:22px; border:1px solid var(--border); border-radius:14px; background:var(--panel); }
+    .card h3 { margin-top:0; }
+    .notice { margin:32px 0; padding:18px 22px; border-left:4px solid var(--accent); background:var(--panel); }
+    code,pre { background:#07101f; border-radius:8px; }
+    pre { padding:20px; overflow:auto; color:#cad5e5; }
+    input,button { width:100%; padding:12px; border:0; border-radius:8px; font:inherit; }
+    button { margin-top:10px; background:var(--accent); color:#06111c; font-weight:700; cursor:pointer; }
+    button:disabled { opacity:.5; cursor:not-allowed; }
+    #result { min-height:2rem; white-space:pre-line; }
+    footer { margin-top:64px; padding-top:24px; border-top:1px solid var(--border); color:var(--muted); }
   </style>
 </head>
-
 <body>
+  <header>
+    <p class="eyebrow">Personal technical portfolio</p>
+    <h1>LABP-Stack</h1>
+    <p class="lead">A hands-on lab connecting a foundation in voice and real-time communications with growing work in automation and applied AI.</p>
+    <p><strong>Luis Alfredo Báez Páez</strong><br>Technical Infrastructure & Communications Leader</p>
+  </header>
 
-<!-- HERO -->
-<h1>LABP-Stack</h1>
-
-<p><strong>VoIP & Cloud Architect | AI-Driven Communications | AWS & Automation Specialist</strong></p>
-
-<p>
-Production-grade platform for building intelligent communication systems.
-Focused on stability, observability, automation and real-world operations.
-</p>
-
-<div>
-  <span class="tag">VoIP</span>
-  <span class="tag">AI</span>
-  <span class="tag">AWS</span>
-  <span class="tag">Automation</span>
-  <span class="tag">High Availability</span>
-</div>
-
-<!-- ABOUT -->
-<div class="section box">
-  <h2>About</h2>
-
-  <p>
-    I design, migrate, and stabilize communication platforms for companies that
-    rely on telephony in their daily operations.
-  </p>
-
-  <p>
-    My focus is transforming unstable or legacy systems into reliable,
-    scalable and observable cloud-native platforms.
-  </p>
-</div>
-
-<!-- SERVICES -->
-<div class="section box">
-  <h2>Services</h2>
-
-  <ul>
-    <li><strong>System Health Check</strong> — Technical diagnosis & roadmap</li>
-    <li><strong>Cloud VoIP Modernization</strong> — Migration & implementation</li>
-    <li><strong>Managed Communications</strong> — Continuous support</li>
-  </ul>
-</div>
-
-<!-- ARCHITECTURE -->
-<div class="section box">
-  <h2>Architecture</h2>
-
-  <pre style="color:#94a3b8;">
-Voice / Text
-     ↓
-Intent API
-     ↓
-Decision Layer
-     ↓
-Automation
-     ↓
-Cloud Services (AWS)
-  </pre>
-
-  <p>
-    Reusable backend logic across IVR, voice agents and automation workflows.
-  </p>
-</div>
-
-<!-- PROJECTS -->
-<div class="section">
-  <h2>Projects</h2>
-
-  <div class="grid">
-
-    <div class="box">
-      <h3>Intent Detection API</h3>
-      <p>Status: Production</p>
-      <p>Cloud-hosted intent classification service.</p>
-      <p>
-        <a href="https://labp-backend-production.up.railway.app/" target="_blank">
-          Live Endpoint
-        </a>
-      </p>
-    </div>
-
-    <div class="box">
-      <h3>AI Voice Gateway</h3>
-      <p>Status: PoC</p>
-      <p>VoIP + AI conversational gateway architecture.</p>
-    </div>
-
-    <div class="box">
-      <h3>RAG Assistant</h3>
-      <p>Status: In Progress</p>
-      <p>Knowledge-based automation assistant.</p>
-    </div>
-
+  <div class="notice">
+    <strong>Evidence-first status:</strong> this portfolio contains a static site, a small keyword-based API prototype, and design studies. It is not a production platform or commercial service offering.
   </div>
-</div>
 
-<!-- LIVE DEMO -->
-<div class="section box">
-  <h2>Live Demo — Intent API</h2>
+  <h2>Current work</h2>
+  <div class="grid">
+    <article class="card">
+      <p class="status">Prototype · deployment offline</p>
+      <h3>Intent API</h3>
+      <p>Node.js/Express endpoint using deterministic keyword rules for <code>PRICING</code>, <code>GREETING</code>, and <code>UNKNOWN</code>. It includes request IDs and structured console logs; it does not use an AI model.</p>
+      <a href="https://github.com/Fredobapa/labp-backend">Inspect backend code</a>
+    </article>
+    <article class="card">
+      <p class="status">Design study</p>
+      <h3>Voice AI Gateway</h3>
+      <p>Documentation for a possible voice-to-decision flow. Speech-to-text, Asterisk/RTC integration, and response audio are not implemented yet.</p>
+      <a href="https://github.com/Fredobapa/LABP-Stack/tree/main/docs/architectures">Read architecture notes</a>
+    </article>
+    <article class="card">
+      <p class="status">Planned</p>
+      <h3>RAG experiment</h3>
+      <p>Concept scope only. No ingestion, embeddings, vector store, retrieval, generation, or evaluation code is currently committed.</p>
+      <a href="https://github.com/Fredobapa/LABP-Stack/tree/main/projects/rag-knowledge-base">Read planned scope</a>
+    </article>
+  </div>
 
-  <input id="textInput" type="text" placeholder="Try: I want to know the price" />
-  <button onclick="send()">Send</button>
+  <h2>Current architecture</h2>
+  <pre>Browser text input
+      -> POST /analyze
+      -> Express API
+      -> keyword rules
+      -> JSON intent and response</pre>
+  <p>AWS, n8n, Asterisk/SBC, speech-to-text, and RAG are roadmap or design-study items, not current deployed components.</p>
 
-  <div class="result" id="result"></div>
-</div>
+  <section class="card">
+    <h2>API demo</h2>
+    <p id="availability">Checking the prototype backend…</p>
+    <input id="textInput" type="text" placeholder="Try: I want to know the price" disabled>
+    <button id="sendButton" type="button" disabled>Analyze</button>
+    <p id="result" aria-live="polite"></p>
+  </section>
 
-<!-- CONTACT -->
-<div class="section box">
-  <h2>Contact & Professional Collaboration</h2>
-
-  <p>
-    For technical collaboration, platform architecture advisory,
-    or strategic consulting related to intelligent communication systems.
-  </p>
-
-  <p>
-    📧 <strong>Email:</strong> 
-    <a href="mailto:luisalfredobaezpaez@gmail.com">
-      luisalfredobaezpaez@gmail.com
-    </a>
-  </p>
-
-  <p>
-    📄 <strong>Professional Overview:</strong><br>
-    <a href="docs/assets/LABP_Stack_Propuesta_Comercial.pdf" target="_blank">
-      Download Technical & Service Profile (PDF)
-    </a>
-  </p>
-
-  <p>
-    💼 <strong>GitHub:</strong> 
-    <a href="https://github.com/Fredobapa" target="_blank">
-      github.com/Fredobapa
-    </a>
-  </p>
-
-  <p style="margin-top:16px; font-size:14px; color:#94a3b8;">
-    Currently leading corporate infrastructure operations while
-    developing independent production-grade communication platforms.
-  </p>
-</div>
-
-
-<!-- LINKS -->
-<div class="section box">
-  <h2>Resources</h2>
-
+  <h2>Next milestones</h2>
   <ul>
-    <li><a href="https://github.com/Fredobapa/LABP-Stack" target="_blank">Frontend Repo</a></li>
-    <li><a href="https://github.com/Fredobapa/labp-backend" target="_blank">Backend Repo</a></li>
-    <li><a href="/LABP-Stack/aws/aws-blueprint.html" target="_blank">AWS Blueprint</a></li>
+    <li>Clean backend repository hygiene and add automated API tests.</li>
+    <li>Restore a reproducible hosted demo with explicit availability status.</li>
+    <li>Build one end-to-end voice prototype and publish the setup and limitations.</li>
+    <li>Commit one exportable automation workflow with sample data.</li>
+    <li>Implement and evaluate a small RAG experiment before describing it as a working component.</li>
   </ul>
-</div>
 
-<script>
-async function send() {
-  const input = document.getElementById("textInput");
-  const result = document.getElementById("result");
+  <h2>Source and design notes</h2>
+  <ul>
+    <li><a href="https://github.com/Fredobapa/LABP-Stack">LABP-Stack repository</a></li>
+    <li><a href="https://github.com/Fredobapa/labp-backend">Backend repository</a></li>
+    <li><a href="aws/aws-blueprint.html">AWS deployment design study</a></li>
+  </ul>
 
-  if (!input.value) {
-    result.innerText = "Type a message.";
-    return;
-  }
+  <footer>Personal work by Luis Alfredo Báez Páez. Not an employer, client, consulting, or production deployment claim.</footer>
 
-  result.innerText = "Processing...";
+  <script>
+    const endpoint = "https://labp-backend-production.up.railway.app";
+    const input = document.getElementById("textInput");
+    const button = document.getElementById("sendButton");
+    const availability = document.getElementById("availability");
+    const result = document.getElementById("result");
 
-  try {
-    const res = await fetch(
-      "https://labp-backend-production.up.railway.app/analyze",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ text: input.value })
+    async function checkBackend() {
+      try {
+        const response = await fetch(endpoint + "/");
+        if (!response.ok) throw new Error("Unavailable");
+        availability.textContent = "Prototype backend available.";
+        input.disabled = false;
+        button.disabled = false;
+      } catch {
+        availability.textContent = "Prototype backend currently unavailable. The source code remains available for local review.";
       }
-    );
+    }
 
-    const data = await res.json();
+    async function analyze() {
+      if (!input.value.trim()) { result.textContent = "Enter a short message."; return; }
+      button.disabled = true;
+      result.textContent = "Processing…";
+      try {
+        const response = await fetch(endpoint + "/analyze", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ text: input.value })
+        });
+        if (!response.ok) throw new Error("Unavailable");
+        const data = await response.json();
+        result.textContent = `Intent: ${data.intent}\nResponse: ${data.response}`;
+      } catch {
+        result.textContent = "Prototype backend currently unavailable.";
+      } finally {
+        button.disabled = false;
+      }
+    }
 
-    result.innerText =
-      "Intent: " + data.intent + "\n" +
-      "Response: " + data.response;
-
-  } catch {
-    result.innerText = "Backend error.";
-  }
-}
-</script>
-
-<footer>
-LABP-Stack — Production Communication Architecture
-</footer>
-
+    button.addEventListener("click", analyze);
+    checkBackend();
+  </script>
 </body>
 </html>
-

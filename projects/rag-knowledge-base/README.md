@@ -1,15 +1,15 @@
 # RAG Knowledge Base
 
-A Retrieval-Augmented Generation (RAG) system designed to provide accurate, source-backed answers from structured documents.
+A planned Retrieval-Augmented Generation (RAG) learning project. There is no RAG implementation in this repository yet.
 
-## What it does
+## Intended experiment
 - Ingests technical documentation
 - Indexes content for semantic search
 - Retrieves relevant context based on user queries
 - Generates grounded answers using retrieved sources
 
 ## Why this project
-This project demonstrates how AI systems can reliably answer domain-specific questions without hallucination, making them suitable for production use.
+The goal is to learn how retrieval can ground answers in a small, public document set and how those answers can be evaluated. No reliability or production-suitability claim is made at the current stage.
 
 ## High-level flow
 Documents → Embeddings → Vector Store → Retrieval → Answer Generation
@@ -21,4 +21,4 @@ Documents → Embeddings → Vector Store → Retrieval → Answer Generation
 - Documentation search engines
 
 ## Status
-🚧 In progress — ingestion and retrieval design phase.
+Planned — concept documentation only. No ingestion, embeddings, vector store, retrieval, generation, or evaluation code is currently committed.

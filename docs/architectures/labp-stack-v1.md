@@ -1,90 +1,54 @@
-# LABP-Stack Architecture v1
+# LABP-Stack architecture: current state and target direction
 
-## Overview
+## Purpose
 
-LABP-Stack is a modular cloud-native communication platform focused on:
+This document separates the prototype that exists in the public repositories from components that are still design ideas.
 
-- VoIP
-- AI-driven IVR
-- Automation
-- AWS-native scalability
+## Current state
 
-This architecture represents the current production stack and future roadmap.
+```text
+User types text in a static GitHub Pages site
+                    |
+                    | HTTPS POST /analyze
+                    v
+        Node.js / Express API prototype
+                    |
+                    +-- deterministic keyword rules
+                    +-- JSON response
+                    +-- request ID and console log
+```
 
----
+Implemented boundaries:
 
-## System Architecture
+- Text input only; there is no audio ingestion or speech-to-text implementation.
+- `PRICING` and `GREETING` are matched with simple substring checks; other input returns `UNKNOWN`.
+- There is no OpenAI or other model integration.
+- There is no n8n workflow, Asterisk integration, SBC configuration, persistence, or AWS deployment artifact.
+- The previously documented Railway endpoint is currently unavailable.
 
-Users (Web / Voice / API)
-│
-▼
-Frontend (GitHub Pages / HTML)
-│
-▼
-Backend API (Node.js / Railway)
-│
-▼
-AI Layer (OpenAI / NLP Engine)
-│
-▼
-Observability (Logs / Metrics)
-│
-▼
-Automation (n8n / Workflows)
-│
-▼
-AWS VoIP Core (Asterisk / SBC / S3)
+## Target direction (not implemented)
 
+```text
+Voice or text channel
+        -> transcription when needed
+        -> decision layer
+        -> explicit routing or automation rule
+        -> communications or business-system action
+        -> response
+```
 
----
+Possible future modules include Asterisk/RTC integration, speech-to-text, an evaluated intent classifier, an exportable automation workflow, and a small retrieval experiment. Each module remains roadmap scope until code, configuration, reproducible instructions, and verification evidence are committed.
 
-## Components
+## Design priorities
 
-### Frontend
-- Portfolio interface
-- API consumer
-- User dashboard
-
-### Backend
-- Express.js API
-- Intent detection
-- Health monitoring
-- Webhooks
-
-### AI Layer
-- LLM integration
-- NLP processing
-- Response generation
-
-### Observability
-- Centralized logging
-- Performance monitoring
-- Error tracking
-
-### Automation
-- Incident response
-- Backup workflows
-- Reporting pipelines
-
-### AWS VoIP Core (Roadmap)
-- Asterisk PBX
-- SBC integration
-- Call recording storage
-- High availability design
-
----
-
-## Design Principles
-
-- Cloud-first
-- Security-by-design
-- Automation-driven
-- Highly observable
-- Carrier-grade reliability
-
----
+- Make current and target state unmistakable.
+- Prefer small reproducible integrations over broad platform claims.
+- Keep voice and real-time communications as the technical foundation.
+- Treat automation and applied AI as demonstrated learning areas.
+- Add security, reliability, and operational claims only with supporting implementation and tests.
 
 ## Author
 
-Luis Alfredo Báez Páez  
-VoIP Architect & Cloud Engineer
+Luis Alfredo Báez Páez<br>
+Technical Infrastructure & Communications Leader<br>
+Voice / RTC foundation · developing Automation & Applied AI
