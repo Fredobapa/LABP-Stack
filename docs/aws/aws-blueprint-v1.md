@@ -1,108 +1,52 @@
-# AWS Blueprint v1 — LABP-Stack (VoIP · AI · Automation)
+# AWS deployment design study
 
-This document describes the AWS-oriented deployment blueprint for LABP-Stack.
-Goal: always-on, low-latency services with production observability.
+**Status: unimplemented design study**
 
----
+No AWS resources, Terraform, CloudFormation, CDK project, deployment pipeline, or verification evidence for this design are included in the public repositories. The current API prototype is written for Node.js/Express and was previously linked to Railway; that public endpoint is currently unavailable.
 
-## 1) Current Production (Today)
+## Learning objective
 
-- Frontend: GitHub Pages (static HTML)
-- Backend API: Railway (Node.js / Express)
-- Endpoint: https://labp-backend-production.up.railway.app
+Explore how the small `/analyze` prototype could be deployed on AWS after it has tests, a documented API contract, and basic operational controls.
 
-This is the current working baseline.
+## Option A: serverless experiment
 
----
+```text
+User -> API Gateway -> Lambda -> intent rules -> response
+                              -> CloudWatch logs
+```
 
-## 2) AWS Target Architecture (v1)
+Questions to validate:
 
-### 2.1 MVP (Fast, low-cost)
-**Use when:** you want AWS credibility and “always-on” with minimal complexity.
+- What changes are required to adapt the Express handler?
+- What are the observed cold-start and request latency characteristics?
+- How are logs correlated without exposing sensitive request data?
+- What authentication and rate-limiting controls are appropriate?
 
-- Route 53 (optional custom domain)
-- API Gateway (HTTP API)
-- AWS Lambda (Node.js) — hosts `/analyze`
-- CloudWatch Logs — request logs + errors
-- (Optional) DynamoDB — store intent events / history
+## Option B: container experiment
 
-**Flow**
-User → API Gateway → Lambda → (Intent logic) → Response → CloudWatch Logs
+```text
+User -> load balancer -> containerized API -> response
+                                        -> logs and metrics
+```
 
-Pros:
-- Fully managed, scales automatically
-- No server management
-- Native logs/metrics
+Questions to validate:
 
-Cons:
-- Cold starts possible (usually acceptable for text API)
+- Can the API be packaged reproducibly as a container?
+- What health check and graceful-shutdown behavior is required?
+- What is the smallest sensible network and IAM boundary?
+- How should cost and operational overhead be measured?
 
----
+## Voice / RTC expansion
 
-### 2.2 Production (Recommended)
-**Use when:** you need predictable latency and expansion to VoIP/real-time workloads.
+Asterisk, SBC, SIP/RTP handling, recording storage, redundancy, and disaster recovery are outside the implemented scope. They should be documented as deployed architecture only after a reproducible lab or sanitized implementation artifact exists.
 
-- VPC (private subnets for services)
-- ECS Fargate (or EC2) running Node.js API (container)
-- ALB (HTTP/HTTPS)
-- ACM (TLS certificates)
-- CloudWatch Logs + Metrics + Alarms
-- Route 53 (DNS)
-- S3 (artifacts, diagrams, optional storage)
-- (Optional) ElastiCache/Redis for sessions
-- (Optional) RDS/Postgres for persistence
+## Completion criteria
 
-**Flow**
-User → Route53 → ALB (HTTPS) → ECS Service (Node API) → Logs/Metrics → CloudWatch
+This design can move from **design study** to **prototype** when the repository contains:
 
-Pros:
-- Stable performance, no cold starts
-- Easy to evolve into multi-service platform
-- Aligns with VoIP + AI gateway expansion
-
-Cons:
-- More components than MVP
-
----
-
-## 3) VoIP Expansion Path (AWS-Oriented)
-
-LABP-Stack is VoIP-first. Production voice workloads typically add:
-
-- Asterisk (EC2) inside VPC
-- SIP security controls (SBC / Kamailio / Oracle SBC)
-- RTP media handling (NAT, SG rules, media anchoring)
-- Call recordings: S3 + Lifecycle (Glacier)
-- Observability: CloudWatch + dashboards/alarms
-
-**Voice Flow (High-level)**
-PSTN/Carrier → SBC → Asterisk → (ARI/HTTP) → LABP API → (AI/Automation)
-
----
-
-## 4) Observability (Mandatory in AWS version)
-
-Minimum:
-- CloudWatch Logs for API requests/errors
-- CloudWatch Metrics for latency, 4xx/5xx
-- CloudWatch Alarms (availability / error rate)
-
-Optional:
-- X-Ray tracing (request path)
-- Dashboards for SLO (p95 latency, error rate)
-
----
-
-## 5) Deployment Notes
-
-- Prefer Infrastructure as Code (Terraform / CloudFormation / CDK)
-- Prefer CI/CD (GitHub Actions) to deploy to AWS
-- Keep config in environment variables / Parameter Store / Secrets Manager
-
----
-
-## 6) Versioning
-
-- v1 MVP: API Gateway + Lambda
-- v1 Prod: ALB + ECS (Fargate) + CloudWatch + Route53
-
+- deployable Infrastructure as Code;
+- automated API tests;
+- deployment and teardown instructions;
+- a cost note;
+- security assumptions;
+- observed logs or metrics from a test deployment.

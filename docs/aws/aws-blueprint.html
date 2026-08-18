@@ -1,251 +1,35 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>AWS Blueprint — LABP-Stack</title>
-
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
+  <title>AWS deployment design study — LABP-Stack</title>
   <style>
-    body {
-      font-family: system-ui, sans-serif;
-      background: #0f172a;
-      color: #e5e7eb;
-      max-width: 1000px;
-      margin: auto;
-      padding: 40px 24px;
-      line-height: 1.7;
-    }
-
-    h1, h2, h3 {
-      color: #38bdf8;
-      margin-top: 48px;
-    }
-
-    p {
-      color: #cbd5e1;
-    }
-
-    ul {
-      margin-left: 20px;
-    }
-
-    li {
-      margin-bottom: 6px;
-    }
-
-    pre {
-      background: #020617;
-      padding: 20px;
-      border-radius: 10px;
-      overflow-x: auto;
-      color: #e5e7eb;
-      border: 1px solid #1f2a44;
-    }
-
-    .box {
-      background: #020617;
-      border: 1px solid #1f2a44;
-      border-radius: 12px;
-      padding: 24px;
-      margin-top: 24px;
-    }
-
-    a {
-      color: #38bdf8;
-      text-decoration: none;
-      font-weight: 500;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    footer {
-      margin-top: 80px;
-      font-size: 14px;
-      color: #94a3b8;
-      text-align: center;
-    }
+    body { max-width:820px; margin:auto; padding:48px 24px; color:#e5e7eb; background:#0f172a; font:16px/1.65 system-ui,sans-serif; }
+    h1,h2 { color:#38bdf8; } p,li { color:#b8c3d5; } .notice,pre { padding:20px; background:#07101f; border-radius:10px; } a { color:#38bdf8; }
   </style>
 </head>
-
 <body>
-
-<h1>AWS Blueprint — LABP-Stack</h1>
-
-<p>
-Production-ready cloud architecture for VoIP, AI and Automation platforms.
-Designed for scalability, security and operational resilience.
-</p>
-
-<p>
-This blueprint represents the reference infrastructure used across LABP-Stack
-deployments and consulting projects.
-</p>
-
-<div class="box">
-  <strong>Status:</strong> MVP + Production Ready<br>
-  <strong>Scope:</strong> Contact Centers, Voice Platforms, AI Gateways<br>
-  <strong>Cloud:</strong> AWS-Oriented Architecture
-</div>
-
-
-<!-- CORE -->
-
-<h2>Core Components</h2>
-
-<ul>
-  <li>Amazon VPC with segmented subnets (Public / Private)</li>
-  <li>EC2 instances (Asterisk, Media Gateways, AI Services)</li>
-  <li>Application / Network Load Balancer</li>
-  <li>RDS / DynamoDB for metadata and control data</li>
-  <li>S3 for call recordings and artifacts</li>
-  <li>CloudWatch for metrics, logs and alerts</li>
-</ul>
-
-
-<!-- ARCH -->
-
-<h2>High-Level Architecture</h2>
-
-<pre>
-Users (Voice / Web / API)
-        ↓
-AWS Load Balancer (ALB / NLB)
-        ↓
-API Layer (Railway / AWS / Containers)
-        ↓
-VoIP Core (Asterisk / SBC / AI)
-        ↓
-Automation & Storage (n8n / S3 / DB)
-</pre>
-
-<p>
-This layered design enables independent scaling of voice, AI and automation
-components while maintaining operational stability.
-</p>
-
-
-<!-- MVP -->
-
-<h2>MVP Deployment Model</h2>
-
-<div class="box">
-
-<ul>
-  <li>Single VPC</li>
-  <li>2–3 EC2 instances</li>
-  <li>Basic ALB / NLB</li>
-  <li>S3 lifecycle policies</li>
-  <li>CloudWatch basic monitoring</li>
-</ul>
-
-<p>
-Target: Proof of concept, pilot projects, controlled production.
-</p>
-
-</div>
-
-
-<!-- PROD -->
-
-<h2>Production Deployment Model</h2>
-
-<div class="box">
-
-<ul>
-  <li>Multi-AZ architecture</li>
-  <li>Auto Scaling Groups</li>
-  <li>Redundant SIP trunks</li>
-  <li>Multi-region backup</li>
-  <li>Disaster Recovery Plan (DRP)</li>
-  <li>Centralized logging</li>
-</ul>
-
-<p>
-Target: High-volume contact centers, carrier-grade platforms,
-mission-critical systems.
-</p>
-
-</div>
-
-
-<!-- SECURITY -->
-
-<h2>Security Architecture</h2>
-
-<ul>
-  <li>TLS / SRTP encryption</li>
-  <li>IAM Roles with least privilege</li>
-  <li>Network isolation via Security Groups</li>
-  <li>WAF for API protection</li>
-  <li>Geo-blocking and fraud detection</li>
-  <li>Encrypted storage (S3 / RDS)</li>
-</ul>
-
-
-<!-- OPS -->
-
-<h2>Operations & Observability</h2>
-
-<ul>
-  <li>Structured application logging</li>
-  <li>CloudWatch dashboards</li>
-  <li>Automated alerting</li>
-  <li>Backup automation</li>
-  <li>Capacity monitoring</li>
-</ul>
-
-<p>
-Designed for 24x7 operations and proactive incident management.
-</p>
-
-
-<!-- INTEGRATION -->
-
-<h2>Integration with LABP-Stack</h2>
-
-<ul>
-  <li>Intent Detection API</li>
-  <li>AI Voice Gateway</li>
-  <li>RAG Knowledge Assistant</li>
-  <li>n8n automation pipelines</li>
-  <li>Carrier interconnection</li>
-</ul>
-
-
-<!-- USE CASES -->
-
-<h2>Typical Use Cases</h2>
-
-<ul>
-  <li>AI-driven IVR platforms</li>
-  <li>Cloud migration of legacy PBX</li>
-  <li>Hybrid contact centers</li>
-  <li>Voice analytics systems</li>
-  <li>Automated outbound campaigns</li>
-</ul>
-
-
-<!-- AUTHOR -->
-
-<h2>Author</h2>
-
-<p>
-Luis Alfredo Báez Páez<br>
-VoIP Architect · Cloud Engineer · Automation & AI Integration
-</p>
-
-<p>
-GitHub: <a href="https://github.com/Fredobapa" target="_blank">github.com/Fredobapa</a>
-</p>
-
-
-<footer>
-LABP-Stack — AWS Blueprint · Production Architecture Reference
-</footer>
-
+  <h1>AWS deployment design study</h1>
+  <div class="notice"><strong>Status: unimplemented.</strong> No AWS resources, Infrastructure as Code, deployment pipeline, or test evidence for this design are present in the public repositories.</div>
+  <h2>Learning objective</h2>
+  <p>Explore how the small keyword-based <code>/analyze</code> API could be deployed after it has automated tests, a documented contract, and basic operational controls.</p>
+  <h2>Option A: serverless experiment</h2>
+  <pre>User → API Gateway → Lambda → intent rules → response
+                                  ↘ CloudWatch logs</pre>
+  <h2>Option B: container experiment</h2>
+  <pre>User → load balancer → containerized API → response
+                                             ↘ logs and metrics</pre>
+  <h2>Not currently implemented</h2>
+  <p>Asterisk, SBC, SIP/RTP handling, recording storage, redundancy, disaster recovery, authentication, rate limiting, AWS networking, and monitoring remain outside the implemented scope.</p>
+  <h2>Evidence required to call this a prototype</h2>
+  <ul>
+    <li>Deployable Infrastructure as Code</li>
+    <li>Automated API tests</li>
+    <li>Deployment and teardown instructions</li>
+    <li>Cost and security notes</li>
+    <li>Observed logs or metrics from a test deployment</li>
+  </ul>
+  <p><a href="../">Return to LABP-Stack</a></p>
 </body>
 </html>
-

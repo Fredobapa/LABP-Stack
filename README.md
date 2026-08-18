@@ -1,331 +1,118 @@
-# LABP-Stack  
+# LABP-Stack
 
-## Executive Overview
+Personal technical portfolio exploring how voice and real-time communications can connect with small automation and applied-AI components.
 
-LABP-Stack is a modular, production-grade platform designed to modernize
-voice and communication systems through the integration of:
+This repository documents working prototypes, design studies, and a roadmap. It is not presented as a production platform or as evidence that every diagrammed component has been deployed.
 
-- Cloud-native infrastructure
-- AI-driven decision layers
-- Automated operational workflows
-- Carrier-grade VoIP architectures
+> Voice and communications are the foundation. Automation and applied AI are the areas being developed through hands-on prototypes.
 
-The platform enables organizations to move from static PBX and IVR systems
-to intelligent, self-operating communication environments.
+## Professional context
 
-It is built to support:
+I am a **Technical Infrastructure & Communications Leader** with practical strength in voice platforms, Asterisk, SIP, and real-time communications. LABP-Stack is where I document that experience and build toward deeper capability in automation and applied AI.
 
-- Contact centers and service platforms
-- Enterprises migrating telephony to cloud
-- AI-enabled voice automation
-- High-availability communication systems
-- Compliance-driven recording and auditing
+The repository contains personal work only. It does not represent an employer, client environment, commercial service offering, or production customer deployment.
 
-Unlike experimental AI projects, LABP-Stack is engineered for
-real operational environments, with emphasis on:
+## What is implemented
 
-- Reliability
-- Security
-- Observability
-- Scalability
-- Long-term maintainability
+| Component | Evidence in the public repositories | Status |
+| --- | --- | --- |
+| Portfolio site | Static HTML/CSS/JavaScript in `docs/index.html`, published with GitHub Pages | Working static site |
+| Intent API | Small Node.js/Express API in [`Fredobapa/labp-backend`](https://github.com/Fredobapa/labp-backend); keyword rules for `PRICING` and `GREETING`, JSON responses, request IDs, and console logs | Prototype; deployment currently unavailable |
+| Browser-to-API demo | The portfolio sends text to `/analyze` and renders the returned intent and response | Implemented, but unavailable while the backend is offline |
+| Voice AI Gateway | Flow and component documentation only | Design study |
+| RAG Knowledge Assistant | Concept README only; no ingestion, retrieval, vector store, or generation code | Planned |
+| AWS deployment | Reference notes only; no deployed AWS resources or Infrastructure as Code in this repository | Design study |
+| Automation / n8n | No workflow or integration artifact committed | Planned |
 
-The stack reflects practical experience in corporate infrastructure,
-telecommunications engineering, and cloud systems architecture.
+Status labels describe only what can be verified in the public repositories.
 
+## Current prototype
 
+```text
+Browser (GitHub Pages)
+        |
+        | POST /analyze { text }
+        v
+Node.js / Express API
+        |
+        +-- keyword matching: price -> PRICING
+        +-- keyword matching: hello or hi -> GREETING
+        +-- otherwise -> UNKNOWN
+        |
+        +-- JSON response + request ID
+        +-- structured request log to stdout
+```
 
-### VoIP · AI · Automation · Cloud (AWS-Oriented)
+The current classifier is deterministic keyword matching. It does not call an LLM or other AI service.
 
-LABP-Stack is a production-focused technical platform for building **intelligent communication systems**, where **voice is the primary interface**, **AI provides decision-making**, **automation executes actions**, and **cloud infrastructure ensures scalability and availability**.
+## Repository map
 
-This stack is not a collection of isolated demos.  
-It is a coherent ecosystem designed to modernize real-world telephony, contact centers, and communication workflows.
+- [`docs/index.html`](docs/index.html) - GitHub Pages portfolio and browser demo
+- [`docs/architectures/`](docs/architectures/) - current-state and target-state design notes
+- [`docs/decisions/`](docs/decisions/) - early decision records for the prototype
+- [`docs/aws/aws-blueprint-v1.md`](docs/aws/aws-blueprint-v1.md) - unimplemented AWS design study
+- [`projects/voice-ai-gateway`](projects/voice-ai-gateway) - planned voice gateway scope
+- [`projects/rag-knowledge-base/`](projects/rag-knowledge-base/) - planned RAG scope
+- [`Fredobapa/labp-backend`](https://github.com/Fredobapa/labp-backend) - executable API prototype
 
----
+## Run the API locally
 
-## 🎯 Core Focus
+```bash
+git clone https://github.com/Fredobapa/labp-backend.git
+cd labp-backend
+npm install
+npm start
+```
 
-- VoIP & Real-Time Communications  
-- AI-based Intent Detection  
-- Automation & Orchestration  
-- Cloud-Native Infrastructure (AWS-Oriented)
+```bash
+curl http://localhost:3000/
 
----
+curl -X POST http://localhost:3000/analyze \
+  -H 'Content-Type: application/json' \
+  -d '{"text":"I want to know the price"}'
+```
 
-## 🧠 Stack Philosophy
+## Design direction
 
-Modern communication platforms must go beyond traditional PBXs and static IVRs.  
-LABP-Stack is built around the following principles:
+The target direction is a modular communications lab in which a voice channel can feed a decision layer and then invoke an automation. Target diagrams are hypotheses to be implemented and tested; they are not descriptions of the current deployment.
 
-- Voice-first user interaction  
-- AI as a decision layer, not a black box  
-- Automation as an operational standard  
-- Cloud-first and always-on services  
-- Architectures designed for production, not experiments  
+```text
+SIP / WebRTC input
+        -> speech-to-text
+        -> intent or routing decision
+        -> explicit business rule
+        -> automation or communications action
+        -> text or voice response
+```
 
----
+## Roadmap
 
-## 🏗️ Architecture Overview
+### Next
 
-![LABP-Stack Architecture](docs/diagrams/labp-architecture-v1.png)
+- [ ] Add a backend README with API contract, limitations, and local setup
+- [ ] Remove committed `node_modules` from the backend and add `.gitignore`
+- [ ] Add automated tests for health, validation, `PRICING`, `GREETING`, and `UNKNOWN`
+- [ ] Restore or replace the hosted demo; show backend availability in the UI
+- [ ] Align the documented intent map with the intents implemented in code
 
+### After the baseline is reliable
 
-This architecture allows the same intelligence layer to be reused across IVR systems, voice agents, omnichannel routing and automated operational workflows.
+- [ ] Build one end-to-end voice input prototype and publish reproducible setup steps
+- [ ] Add one exportable automation workflow with sample input and output
+- [ ] Implement a minimal RAG experiment with a small public dataset and evaluation examples
+- [ ] Convert the AWS design study into deployable Infrastructure as Code only if it is actually tested
+- [ ] Add metrics, authentication, rate limiting, and deployment documentation before using any production-readiness language
 
----
+## Evidence standard
 
-## 🚀 Current Projects in the Stack
+New capabilities should be listed as implemented only when this repository includes the relevant code or configuration, reproducible instructions, and a verification method. Concepts remain labeled **planned** or **design study** until then.
 
-### 1. Intent Detection API — **LIVE (Production)**
+## Author
 
-**Category:** AI · Backend · Cloud  
-**Status:** Deployed and publicly accessible
+**Luis Alfredo Báez Páez**<br>
+Technical Infrastructure & Communications Leader<br>
+Voice / RTC foundation · developing Automation & Applied AI
 
-A production-ready REST API that analyzes user input and classifies intent in real time.  
-The service is cloud-hosted and actively consumed by the LABP-Stack frontend demo.
+## License
 
-**Key capabilities:**
-
-- Node.js + Express backend  
-- Public HTTPS endpoint  
-- Intent classification logic designed for extensibility  
-- JSON responses for automation pipelines  
-- Continuous deployment via Git → Railway  
-- CORS-enabled cross-platform consumption  
-
-**Live Demo:**  
-Frontend (GitHub Pages) → Backend (Railway) → Real-time response.
-
----
-
-### 2. AI Voice Gateway — **Design & Proof of Concept**
-
-**Category:** VoIP · Real-Time Communications · Architecture  
-**Status:** Design & PoC
-
-An architectural gateway designed to bridge **voice channels** with **AI-driven intent analysis** and **backend decision logic**.
-
-**Designed use cases:**
-
-- Intelligent IVR systems  
-- Voice-based virtual agents  
-- Automated call routing  
-- Integration with CRMs / ERPs  
-- AI-driven outbound call automation
-
-This project represents the **voice entry layer** of the stack.
-
----
-
-### 3. RAG Knowledge Assistant — **Work in Progress**
-
-**Category:** AI · Knowledge Systems · Automation  
-**Status:** In development
-
-A Retrieval-Augmented Generation assistant designed to provide grounded answers based on structured knowledge sources instead of generic LLM responses.
-
-**Conceptual scope:**
-
-- Query understanding via Intent Detection API  
-- Context retrieval from knowledge bases  
-- Grounded response generation  
-- Integration into voice or chat channels
-
-This project extends the stack from **decision-making** into **knowledge-driven automation**.
-
----
-
-## ⚙️ Automation & Orchestration Layer
-
-Automation is treated as a first-class component.
-
-Intent classification is used to:
-
-- Trigger workflows  
-- Route interactions  
-- Escalate cases  
-- Integrate external systems  
-- Reduce manual operational effort
-
-This enables **self-operating communication platforms**.
-
----
-
-## ☁️ Cloud & Deployment
-
-- Cloud-hosted backend services  
-- Public API endpoints  
-- Continuous deployment pipelines  
-- Stateless, service-oriented architecture  
-- AWS-oriented design principles  
-- High-availability mindset
-
----
-
-## 🔐 VoIP & Security Focus
-
-LABP-Stack is designed with real telephony constraints in mind:
-
-- SIP/RTP optimization  
-- NAT traversal & media anchoring  
-- TLS / SRTP encryption  
-- SBC integration  
-- Fraud & SIP attack mitigation  
-- GEO-fencing strategies
-
----
-
-## 📊 Operational Principles
-
-- Always-on services  
-- Low-latency API responses  
-- Observability-ready design  
-- Automation-driven operations  
-- Infrastructure as Code mindset
-
----
-
-## 💼 Real-World Use Cases
-
-LABP-Stack is designed to solve real operational challenges, including:
-
-- Migrating legacy PBX systems to AWS with zero downtime  
-- Deploying AI-powered IVR systems for customer support  
-- Automating call routing and escalation workflows  
-- Centralizing call recordings with legal compliance  
-- Integrating telephony with CRM and ERP platforms  
-- Reducing operational costs through automation  
-- Improving customer experience with intelligent voice agents
-
-These use cases are actively validated through production deployments.
-
----
-
-## 🧩 Professional Services Alignment
-
-LABP-Stack directly supports real-world consulting and implementation services:
-
-- VoIP migration to AWS  
-- Advanced Asterisk implementations  
-- AI-driven IVR systems  
-- SBC optimization and carrier interconnection  
-- Cloud-based call recording architectures  
-- Operational automation with n8n  
-- VoIP security hardening  
-- Technical audits and modernization roadmaps
-
----
-
-## Deployment Framework (30-Day Modernization Cycle)
-
-LABP-Stack enables rapid deployment of intelligent communication systems
-through a structured modernization framework:
-
-### Phase 1 — Technical Assessment
-- VoIP and network analysis
-- Cloud readiness evaluation
-- Security posture review
-- Risk identification
-
-### Phase 2 — Core Platform Deployment
-- AI backend integration
-- VoIP gateway configuration
-- Cloud infrastructure baseline
-- Logging and monitoring setup
-
-### Phase 3 — Automation & Optimization
-- Workflow automation
-- Alerting and reporting
-- Performance tuning
-- Operational handover
-
-This framework allows enterprises to modernize legacy communication
-platforms without service disruption.
-
----
-
-## Engagement Model
-
-LABP-Stack is offered through flexible professional engagement models
-focused on long-term platform quality and operational stability.
-
-Typical collaboration formats include:
-
-- Technical architecture reviews
-- Platform modernization advisory
-- Deployment framework implementation
-- Critical incident resolution
-- Strategic roadmap definition
-
-Engagements are designed to complement internal technical teams,
-providing external expertise without operational dependency.
-
-
----
-
-## 🌐 Repositories & Live Endpoints
-
-**Frontend (GitHub Pages):**  
-https://fredobapa.github.io/LABP-Stack/
-
-**Backend (Intent Detection API):**  
-https://labp-backend-production.up.railway.app/
-
-**Backend Repository:**  
-https://github.com/Fredobapa/labp-backend
-
----
-
-## 🧭 Roadmap
-
-- Visual architecture diagram  
-- Expanded intent catalog  
-- Voice Gateway functional prototype  
-- RAG Knowledge Assistant integration  
-- AWS-native deployment blueprint  
-- Centralized logging & metrics
-
----
-
-## 🧑‍💼 Author
-
-**Luis Alfredo Báez Páez**  
-VoIP Architect · Cloud Engineer · Automation & AI Integration  
-Focused on building production-grade intelligent communication systems.
-
----
-
-## 📌 Closing Statement
-
-LABP-Stack represents a practical approach to modern communication systems:  
-**Voice as interface. AI as decision. Automation as execution. Cloud as foundation.**
-
-## 📈 Logging & Observability
-
-LABP-Stack services are designed with production observability in mind.
-
-Current capabilities include:
-
-- Structured application logs for every request  
-- Intent detection event tracing  
-- Error and exception logging  
-- Cloud-ready log streams (Railway / AWS CloudWatch compatible)  
-
-This observability layer enables:
-
-- Real-time operational monitoring  
-- Automated alerting  
-- Performance analysis  
-- Scalable incident response workflows
-
-## 📞 Contact & Collaboration
-
-LABP-Stack is open for technical collaboration, consulting projects, and enterprise deployments.
-
-For architecture design, implementation support, or strategic consulting, please reach out through GitHub.
-
-This repository serves as both a technical platform and a professional portfolio.
-
-
----
+See [LICENSE](LICENSE).
