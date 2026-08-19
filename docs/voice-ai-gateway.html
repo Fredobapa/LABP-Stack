@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Voice AI Gateway Simulator — LABP-Stack</title>
+  <meta name="description" content="A tested, reproducible simulator for intent-based voice routing decisions by Luis Alfredo Báez Páez.">
+  <link rel="canonical" href="https://fredobapa.github.io/LABP-Stack/voice-ai-gateway.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://fredobapa.github.io/LABP-Stack/voice-ai-gateway.html">
+  <meta property="og:title" content="Voice AI Gateway Simulator — LABP-Stack">
+  <meta property="og:description" content="A tested decision-layer simulator connecting voice architecture with explicit, reproducible routing logic.">
+  <meta property="og:image" content="https://fredobapa.github.io/LABP-Stack/assets/labp-stack-social.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <style>
+    :root { color-scheme:dark; --bg:#07101f; --panel:#0d1a2f; --panel2:#111f38; --text:#eef4ff; --muted:#a9b6ca; --cyan:#38bdf8; --green:#34d399; --border:#263956; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; background:radial-gradient(circle at 80% 0,#102b47 0,transparent 34%),var(--bg); color:var(--text); font:16px/1.65 system-ui,-apple-system,sans-serif; }
+    main,nav,footer { width:min(1080px,calc(100% - 40px)); margin:auto; }
+    nav { display:flex; justify-content:space-between; align-items:center; padding:24px 0; }
+    nav a { color:var(--muted); text-decoration:none; }
+    nav .brand { color:var(--text); font-weight:800; }
+    header { padding:76px 0 54px; max-width:850px; }
+    .eyebrow,.status { color:var(--cyan); font-weight:800; letter-spacing:.08em; text-transform:uppercase; font-size:.82rem; }
+    h1 { margin:.18em 0; font-size:clamp(2.8rem,8vw,6.3rem); line-height:.96; letter-spacing:-.055em; }
+    h2 { margin:0 0 18px; font-size:clamp(1.75rem,4vw,2.5rem); line-height:1.15; }
+    h3 { margin:0 0 8px; }
+    p,li { color:var(--muted); }
+    .lead { font-size:clamp(1.12rem,2.4vw,1.42rem); max-width:760px; }
+    .actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:30px; }
+    .button { display:inline-block; padding:11px 17px; border:1px solid var(--cyan); border-radius:9px; color:var(--cyan); text-decoration:none; font-weight:750; }
+    .button.primary { background:var(--cyan); color:#06111d; }
+    section { margin:34px 0; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:15px; }
+    .card { padding:23px; background:linear-gradient(145deg,var(--panel2),var(--panel)); border:1px solid var(--border); border-radius:14px; }
+    .metric { font-size:2rem; color:var(--text); font-weight:850; }
+    .flow { display:grid; grid-template-columns:repeat(5,1fr); gap:10px; align-items:center; }
+    .flow div { padding:16px 10px; text-align:center; border:1px solid var(--border); border-radius:10px; background:var(--panel); }
+    .flow div:not(:last-child)::after { content:"→"; color:var(--cyan); position:absolute; margin-left:14px; }
+    .demo { display:grid; grid-template-columns:1.1fr .9fr; gap:18px; }
+    label { display:block; color:var(--muted); margin-bottom:8px; }
+    input,button { width:100%; border-radius:9px; border:1px solid var(--border); padding:13px; font:inherit; }
+    input { background:#07111f; color:var(--text); }
+    button { margin-top:10px; background:var(--cyan); color:#06111d; font-weight:800; cursor:pointer; }
+    pre { margin:0; min-height:210px; padding:20px; overflow:auto; border-radius:10px; background:#050b15; color:#cfe3f7; }
+    .boundary { border-left:4px solid var(--green); }
+    .boundary strong { color:var(--green); }
+    footer { padding:45px 0 60px; border-top:1px solid var(--border); color:var(--muted); }
+    @media (max-width:760px) { header{padding-top:42px}.demo{grid-template-columns:1fr}.flow{grid-template-columns:1fr}.flow div:not(:last-child)::after{content:"↓";display:block;position:static;margin:8px 0 -28px}.actions .button{width:100%;text-align:center} }
+  </style>
+</head>
+<body>
+  <nav>
+    <a class="brand" href="./">LABP-Stack</a>
+    <a href="https://github.com/Fredobapa/LABP-Stack/tree/main/projects/voice-ai-gateway">Source on GitHub ↗</a>
+  </nav>
+  <main>
+    <header>
+      <p class="eyebrow">Voice · RTC · Decision systems</p>
+      <h1>Voice AI Gateway Simulator</h1>
+      <p class="lead">A small, tested decision layer that turns simulated voice transcripts into explicit routing actions—without presenting a design study as a production voice platform.</p>
+      <div class="actions">
+        <a class="button primary" href="#demo">Try the browser demo</a>
+        <a class="button" href="https://github.com/Fredobapa/LABP-Stack/actions/workflows/voice-ai-gateway.yml">View automated checks</a>
+      </div>
+    </header>
+
+    <section class="grid" aria-label="Project evidence">
+      <article class="card"><div class="metric">4/4</div><p>Automated tests covering routing, workflows, fallback, and invalid events.</p></article>
+      <article class="card"><div class="metric">Node 20+</div><p>Dependency-free runtime using the built-in HTTP and test modules.</p></article>
+      <article class="card"><div class="metric">3 routes</div><p>Queue routing, workflow initiation, and clarification.</p></article>
+    </section>
+
+    <section class="card">
+      <p class="status">Architecture boundary</p>
+      <h2>From call event to controlled decision</h2>
+      <div class="flow" aria-label="Architecture flow">
+        <div>SIP caller</div><div>Asterisk</div><div>ARI adapter</div><div>Decision layer</div><div>Approved action</div>
+      </div>
+      <p>The public implementation covers the decision layer. The Asterisk and ARI blocks describe the intended integration boundary and are not included in the repository.</p>
+    </section>
+
+    <section id="demo" class="demo">
+      <div class="card">
+        <p class="status">Interactive simulation</p>
+        <h2>Test a transcript</h2>
+        <p>This browser example mirrors the documented deterministic rules. It does not place a call or contact an AI service.</p>
+        <label for="transcript">Simulated transcript</label>
+        <input id="transcript" value="I need help with an incident">
+        <button id="run" type="button">Generate routing decision</button>
+      </div>
+      <div class="card">
+        <p class="status">Structured result</p>
+        <pre id="result" aria-live="polite"></pre>
+      </div>
+    </section>
+
+    <section class="grid">
+      <article class="card"><h3>Implemented</h3><p>Event validation, keyword classification, deterministic routing, HTTP endpoints, CLI demo, and automated tests.</p></article>
+      <article class="card boundary"><h3><strong>Not claimed</strong></h3><p>Live ARI connectivity, SIP registration, audio streaming, ASR, TTS, LLM inference, authentication, persistence, or high availability.</p></article>
+      <article class="card"><h3>Next milestone</h3><p>An isolated ARI adapter that converts approved Asterisk events into the public transcript contract without exposing PBX configuration.</p></article>
+    </section>
+
+    <section>
+      <h2>Why this project matters</h2>
+      <p>It connects deep Voice/RTC experience with a disciplined path into automation and applied AI: define the boundary, implement the smallest verifiable component, test it, and document what remains.</p>
+    </section>
+  </main>
+  <footer>Personal technical work by Luis Alfredo Báez Páez. No employer, client, consulting, or production-deployment claim.</footer>
+  <script>
+    const rules = [
+      { intent:"support", keywords:["support","incident","problem","help"] },
+      { intent:"sales", keywords:["sales","quote","pricing","buy"] },
+      { intent:"appointment", keywords:["appointment","schedule","booking"] }
+    ];
+    const routes = {
+      support:{ action:"route_to_queue", target:"support" },
+      sales:{ action:"route_to_queue", target:"sales" },
+      appointment:{ action:"start_workflow", target:"appointment" },
+      unknown:{ action:"request_clarification", target:null }
+    };
+    function simulate() {
+      const transcript=document.getElementById("transcript").value.trim();
+      const normalized=transcript.toLowerCase();
+      let classification={ intent:"unknown", matchedKeyword:null };
+      for (const rule of rules) {
+        const match=rule.keywords.find(keyword=>normalized.includes(keyword));
+        if (match) { classification={ intent:rule.intent, matchedKeyword:match }; break; }
+      }
+      document.getElementById("result").textContent=JSON.stringify({
+        type:"voice.routing_decision", transcript, classification, decision:routes[classification.intent]
+      },null,2);
+    }
+    document.getElementById("run").addEventListener("click",simulate);
+    document.getElementById("transcript").addEventListener("keydown",event=>{ if(event.key==="Enter") simulate(); });
+    simulate();
+  </script>
+</body>
+</html>
