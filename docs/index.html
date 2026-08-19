@@ -60,10 +60,10 @@
       <a href="https://github.com/Fredobapa/labp-backend">Inspect backend code</a>
     </article>
     <article class="card">
-      <p class="status">Design study</p>
+      <p class="status">Implemented · tested simulator</p>
       <h3>Voice AI Gateway</h3>
-      <p>Documentation for a possible voice-to-decision flow. Speech-to-text, Asterisk/RTC integration, and response audio are not implemented yet.</p>
-      <a href="https://github.com/Fredobapa/LABP-Stack/tree/main/docs/architectures">Read architecture notes</a>
+      <p>A reproducible Node.js decision layer that classifies transcript events and returns explicit queue, workflow, or clarification actions. Live ARI and audio are not included.</p>
+      <a href="voice-ai-gateway.html">Open project case study</a>
     </article>
     <article class="card">
       <p class="status">Planned</p>
@@ -93,7 +93,7 @@
   <ul>
     <li>Keep the backend API contract and automated tests aligned with the deployed prototype.</li>
     <li>Document deployment limits and operational observations from the hosted demo.</li>
-    <li>Build one end-to-end voice prototype and publish the setup and limitations.</li>
+    <li>Add an isolated ARI adapter to the tested Voice AI Gateway decision layer.</li>
     <li>Commit one exportable automation workflow with sample data.</li>
     <li>Implement and evaluate a small RAG experiment before describing it as a working component.</li>
   </ul>
