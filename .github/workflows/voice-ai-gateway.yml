@@ -1,0 +1,38 @@
+name: Voice AI Gateway
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "projects/voice-ai-gateway/**"
+      - ".github/workflows/voice-ai-gateway.yml"
+  pull_request:
+    paths:
+      - "projects/voice-ai-gateway/**"
+      - ".github/workflows/voice-ai-gateway.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Test simulator
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: projects/voice-ai-gateway
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Run automated tests
+        run: npm test
+
+      - name: Run CLI demo
+        run: npm run demo
