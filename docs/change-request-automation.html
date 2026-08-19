@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Change Request Operations Automation — LABP-Stack</title>
+  <meta name="description" content="A credential-free n8n simulation for validating, routing, summarizing, and recording fictional infrastructure change requests.">
+  <link rel="canonical" href="https://fredobapa.github.io/LABP-Stack/change-request-automation.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://fredobapa.github.io/LABP-Stack/change-request-automation.html">
+  <meta property="og:title" content="Change Request Operations Automation">
+  <meta property="og:description" content="Importable n8n workflow, synthetic data, human-review controls, structured audit results, and automated tests.">
+  <meta property="og:image" content="https://fredobapa.github.io/LABP-Stack/assets/labp-stack-social.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <style>
+    :root { color-scheme:dark; --bg:#0f172a; --panel:#111c33; --text:#e5e7eb; --muted:#a9b4c7; --accent:#34d399; --blue:#38bdf8; --border:#283651; }
+    * { box-sizing:border-box; }
+    body { margin:0 auto; max-width:1040px; padding:40px 24px 72px; background:var(--bg); color:var(--text); font:16px/1.65 system-ui,sans-serif; }
+    h1,h2,h3 { line-height:1.2; } h1 { font-size:clamp(2.2rem,6vw,4.4rem); margin:.2em 0; } h2 { margin-top:2.6rem; }
+    p,li { color:var(--muted); } a { color:var(--blue); } code,pre { background:#07101f; border-radius:8px; }
+    pre { padding:20px; overflow:auto; color:#cad5e5; }
+    .eyebrow,.status { color:var(--accent); font-weight:750; letter-spacing:.04em; text-transform:uppercase; }
+    .lead { max-width:780px; font-size:1.2rem; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; }
+    .card { padding:22px; border:1px solid var(--border); border-radius:14px; background:var(--panel); }
+    .card h3 { margin-top:0; }
+    .boundary { margin:30px 0; padding:18px 22px; border-left:4px solid var(--accent); background:var(--panel); }
+    .flow { display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin:24px 0; }
+    .step { flex:1 1 150px; padding:16px; text-align:center; border:1px solid var(--border); border-radius:12px; background:var(--panel); color:var(--text); }
+    .arrow { color:var(--accent); font-size:1.5rem; }
+    footer { margin-top:64px; padding-top:24px; border-top:1px solid var(--border); color:var(--muted); }
+  </style>
+</head>
+<body>
+  <nav><a href="./">← LABP-Stack</a></nav>
+  <header>
+    <p class="eyebrow">Implemented · credential-free simulation</p>
+    <h1>Change Request Operations Automation</h1>
+    <p class="lead">A reproducible n8n workflow for validating, classifying, routing, summarizing, and recording fictional infrastructure change requests while keeping every approval under human control.</p>
+  </header>
+
+  <div class="boundary"><strong>Publication boundary:</strong> this is a synthetic redesign inspired by operational learning. It contains no employer workflow, real request, email, attachment, credential, internal identifier, database schema, or production connection.</div>
+
+  <h2>Decision flow</h2>
+  <div class="flow" aria-label="Request processing flow">
+    <div class="step">Synthetic input</div><span class="arrow">→</span>
+    <div class="step">Validation</div><span class="arrow">→</span>
+    <div class="step">Classification</div><span class="arrow">→</span>
+    <div class="step">Human-review route</div><span class="arrow">→</span>
+    <div class="step">Audit result</div>
+  </div>
+
+  <h2>Four observable outcomes</h2>
+  <div class="grid">
+    <article class="card"><p class="status">Managed · complete</p><h3>Committee summary</h3><p>Prepares a concise review record when mandatory plans are present and risk is not high.</p></article>
+    <article class="card"><p class="status">Managed · exception</p><h3>Detailed review</h3><p>Flags high-risk or incomplete requests and records the specific reasons.</p></article>
+    <article class="card"><p class="status">Other group</p><h3>Fast-track review</h3><p>Requests a simplified human review. It deliberately issues no automatic approval.</p></article>
+    <article class="card"><p class="status">Invalid input</p><h3>Error record</h3><p>Creates a retryable validation result instead of silently discarding the request.</p></article>
+  </div>
+
+  <h2>Evidence you can inspect</h2>
+  <ul>
+    <li>An inactive, importable n8n workflow that requires no credentials.</li>
+    <li>Four fictional requests covering success, external ownership, high risk, and invalid input.</li>
+    <li>Equivalent dependency-free Node.js decision logic.</li>
+    <li>Five automated tests, including a guard against automatic approval.</li>
+    <li>A documented security boundary and explicit non-claims.</li>
+  </ul>
+  <p><a href="https://github.com/Fredobapa/LABP-Stack/tree/main/projects/change-request-automation">Inspect the workflow, samples, tests, and documentation on GitHub</a></p>
+
+  <h2>What this proves—and what it does not</h2>
+  <div class="grid">
+    <section class="card"><h3>Demonstrates</h3><ul><li>Workflow decomposition</li><li>Deterministic validation and routing</li><li>Human-control design</li><li>Structured outputs and test coverage</li><li>Safe technical documentation</li></ul></section>
+    <section class="card"><h3>Does not claim</h3><ul><li>Production deployment</li><li>Live Gmail, Drive, or database integration</li><li>AI-based classification</li><li>Automatic approval or execution</li><li>Production-grade security or reliability</li></ul></section>
+  </div>
+
+  <h2>Authorship</h2>
+  <p>Designed, configured, tested, and documented by <strong>Luis Alfredo Báez Páez</strong>, with AI assistance during development and technical refinement. Problem definition, requirements, validation decisions, testing, and acceptance remained human-led.</p>
+
+  <footer>LABP-Stack · Personal technical portfolio · Not an employer, client, consulting, or production-deployment claim.</footer>
+</body>
+</html>

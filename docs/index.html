@@ -48,7 +48,7 @@
   </header>
 
   <div class="notice">
-    <strong>Evidence-first status:</strong> this portfolio contains a static site, a small keyword-based API prototype, and design studies. It is not a production platform or commercial service offering.
+    <strong>Evidence-first status:</strong> this portfolio contains a static site, small tested simulators, a keyword-based API prototype, and clearly labeled design studies. It is not a production platform or commercial service offering.
   </div>
 
   <h2>Current work</h2>
@@ -66,6 +66,12 @@
       <a href="voice-ai-gateway.html">Open project case study</a>
     </article>
     <article class="card">
+      <p class="status">Implemented · credential-free simulation</p>
+      <h3>Change Request Automation</h3>
+      <p>An importable n8n workflow validates fictional change requests, routes them to human review, prepares committee summaries, and records structured outcomes without external credentials.</p>
+      <a href="change-request-automation.html">Open automation case study</a>
+    </article>
+    <article class="card">
       <p class="status">Planned</p>
       <h3>RAG experiment</h3>
       <p>Concept scope only. No ingestion, embeddings, vector store, retrieval, generation, or evaluation code is currently committed.</p>
@@ -79,7 +85,7 @@
       -> Express API
       -> keyword rules
       -> JSON intent and response</pre>
-  <p>AWS, n8n, Asterisk/SBC, speech-to-text, and RAG are roadmap or design-study items, not current deployed components.</p>
+  <p>AWS, live Asterisk/SBC integration, speech-to-text, and RAG remain roadmap or design-study items. The published n8n artifact is an isolated simulation, not a production integration.</p>
 
   <section class="card">
     <h2>API demo</h2>
@@ -94,7 +100,7 @@
     <li>Keep the backend API contract and automated tests aligned with the deployed prototype.</li>
     <li>Document deployment limits and operational observations from the hosted demo.</li>
     <li>Add an isolated ARI adapter to the tested Voice AI Gateway decision layer.</li>
-    <li>Commit one exportable automation workflow with sample data.</li>
+    <li>Capture a local n8n execution of the credential-free change-request simulation.</li>
     <li>Implement and evaluate a small RAG experiment before describing it as a working component.</li>
   </ul>
 

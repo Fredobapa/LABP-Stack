@@ -19,10 +19,10 @@ The repository contains personal work only. It does not represent an employer, c
 | Portfolio site | Static HTML/CSS/JavaScript in `docs/index.html`, published with GitHub Pages | Working static site |
 | Intent API | Small Node.js/Express API in [`Fredobapa/labp-backend`](https://github.com/Fredobapa/labp-backend); keyword rules for `PRICING` and `GREETING`, JSON responses, request IDs, and console logs | Deployed prototype on Railway |
 | Browser-to-API demo | The portfolio sends text to `/analyze` and renders the returned intent and response | Working demo with a runtime availability check |
-| Voice AI Gateway | Flow and component documentation only | Design study |
+| Voice AI Gateway | Dependency-free Node.js simulator, four automated tests, CLI demo, API endpoints, and architecture notes in `projects/voice-ai-gateway` | Implemented and tested simulator |
 | RAG Knowledge Assistant | Concept README only; no ingestion, retrieval, vector store, or generation code | Planned |
 | AWS deployment | Reference notes only; no deployed AWS resources or Infrastructure as Code in this repository | Design study |
-| Automation / n8n | No workflow or integration artifact committed | Planned |
+| Change Request Automation | Credential-free n8n workflow, synthetic inputs, deterministic routing logic, five automated tests, safety boundary, and audit outputs | Implemented public simulation |
 
 Status labels describe only what can be verified in the public repositories.
 
@@ -51,7 +51,8 @@ The current classifier is deterministic keyword matching. It does not call an LL
 - [`docs/architectures/`](docs/architectures/) - current-state and target-state design notes
 - [`docs/decisions/`](docs/decisions/) - early decision records for the prototype
 - [`docs/aws/aws-blueprint-v1.md`](docs/aws/aws-blueprint-v1.md) - unimplemented AWS design study
-- [`projects/voice-ai-gateway`](projects/voice-ai-gateway) - planned voice gateway scope
+- [`projects/voice-ai-gateway`](projects/voice-ai-gateway) - implemented and tested decision-layer simulator
+- [`projects/change-request-automation`](projects/change-request-automation) - importable n8n change-request simulation with synthetic data
 - [`projects/rag-knowledge-base/`](projects/rag-knowledge-base/) - planned RAG scope
 - [`Fredobapa/labp-backend`](https://github.com/Fredobapa/labp-backend) - executable API prototype
 
@@ -98,7 +99,7 @@ SIP / WebRTC input
 ### After the baseline is reliable
 
 - [ ] Build one end-to-end voice input prototype and publish reproducible setup steps
-- [ ] Add one exportable automation workflow with sample input and output
+- [x] Add one exportable automation workflow with sample input and output
 - [ ] Implement a minimal RAG experiment with a small public dataset and evaluation examples
 - [ ] Convert the AWS design study into deployable Infrastructure as Code only if it is actually tested
 - [ ] Add metrics, authentication, rate limiting, and deployment documentation before using any production-readiness language

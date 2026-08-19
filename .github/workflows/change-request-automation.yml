@@ -1,0 +1,41 @@
+name: Change Request Automation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "projects/change-request-automation/**"
+      - ".github/workflows/change-request-automation.yml"
+  pull_request:
+    paths:
+      - "projects/change-request-automation/**"
+      - ".github/workflows/change-request-automation.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Test public simulation
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: projects/change-request-automation
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Validate n8n workflow JSON
+        run: node -e "JSON.parse(require('node:fs').readFileSync('workflow/change-request-operations-demo.json', 'utf8'))"
+
+      - name: Run automated tests
+        run: npm test
+
+      - name: Run CLI demo
+        run: npm run demo
