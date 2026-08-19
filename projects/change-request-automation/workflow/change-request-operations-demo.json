@@ -1,0 +1,108 @@
+{
+  "name": "Change Request Operations - Public Demo",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "b1c91746-11a5-48ad-a135-27979a931001",
+      "name": "01 Manual Demo Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [-820, 40]
+    },
+    {
+      "parameters": {
+        "jsCode": "return [\n  { json: { requestId: 'CR-2026-001', title: 'Update voice routing policy', ownerGroup: 'communications-platform', risk: 'medium', changeWindow: '2026-08-25T22:00:00Z', hasImplementationPlan: true, hasRollbackPlan: true } },\n  { json: { requestId: 'CR-2026-002', title: 'Refresh workstation policy', ownerGroup: 'workplace-services', risk: 'low', changeWindow: '2026-08-26T20:00:00Z', hasImplementationPlan: true, hasRollbackPlan: true } },\n  { json: { requestId: 'CR-2026-003', title: 'Modify edge routing', ownerGroup: 'communications-platform', risk: 'high', changeWindow: '2026-08-27T23:00:00Z', hasImplementationPlan: true, hasRollbackPlan: false } },\n  { json: { requestId: 'CR-2026-004', title: 'Incomplete demonstration request', ownerGroup: 'communications-platform', risk: 'medium', hasImplementationPlan: true, hasRollbackPlan: true } }\n];"
+      },
+      "id": "b1c91746-11a5-48ad-a135-27979a931002",
+      "name": "02 Create Synthetic Requests",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [-600, 40]
+    },
+    {
+      "parameters": {
+        "jsCode": "const required = ['requestId', 'title', 'ownerGroup', 'risk', 'changeWindow', 'hasImplementationPlan', 'hasRollbackPlan'];\nconst managedGroup = 'communications-platform';\nconst validRisks = new Set(['low', 'medium', 'high']);\n\nreturn items.map(({ json: request }) => {\n  const missing = required.filter((field) => request[field] === undefined || request[field] === null || request[field] === '');\n  if (missing.length || !validRisks.has(request.risk)) {\n    return { json: { requestId: request.requestId || 'UNASSIGNED', title: request.title || 'Untitled request', status: 'VALIDATION_ERROR', route: 'ERROR_QUEUE', humanApprovalRequired: true, reasons: missing.length ? [`Missing required fields: ${missing.join(', ')}`] : ['Risk must be low, medium, or high'], checkedAt: new Date().toISOString() } };\n  }\n\n  const completePlan = request.hasImplementationPlan && request.hasRollbackPlan;\n  if (request.ownerGroup !== managedGroup) {\n    return { json: { ...request, status: 'REVIEW_REQUIRED', route: 'EXTERNAL_FAST_TRACK_REVIEW', humanApprovalRequired: true, reasons: ['Request belongs to another operating group; no automatic approval is issued'], checkedAt: new Date().toISOString() } };\n  }\n\n  if (!completePlan || request.risk === 'high') {\n    const reasons = [];\n    if (!request.hasImplementationPlan) reasons.push('Implementation plan is missing');\n    if (!request.hasRollbackPlan) reasons.push('Rollback plan is missing');\n    if (request.risk === 'high') reasons.push('High-risk change requires explicit review');\n    return { json: { ...request, status: 'REVIEW_REQUIRED', route: 'MANAGED_DETAILED_REVIEW', humanApprovalRequired: true, reasons, checkedAt: new Date().toISOString() } };\n  }\n\n  return { json: { ...request, status: 'READY_FOR_COMMITTEE', route: 'MANAGED_SUMMARY', humanApprovalRequired: true, reasons: ['Required plans are present; prepared for human committee review'], checkedAt: new Date().toISOString() } };\n});"
+      },
+      "id": "b1c91746-11a5-48ad-a135-27979a931003",
+      "name": "03 Validate and Classify",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [-360, 40]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            { "conditions": { "options": { "caseSensitive": true, "leftValue": "", "typeValidation": "strict" }, "conditions": [{ "leftValue": "={{ $json.route }}", "rightValue": "MANAGED_SUMMARY", "operator": { "type": "string", "operation": "equals" } }], "combinator": "and" }, "renameOutput": true, "outputKey": "managed-summary" },
+            { "conditions": { "options": { "caseSensitive": true, "leftValue": "", "typeValidation": "strict" }, "conditions": [{ "leftValue": "={{ $json.route }}", "rightValue": "MANAGED_DETAILED_REVIEW", "operator": { "type": "string", "operation": "equals" } }], "combinator": "and" }, "renameOutput": true, "outputKey": "detailed-review" },
+            { "conditions": { "options": { "caseSensitive": true, "leftValue": "", "typeValidation": "strict" }, "conditions": [{ "leftValue": "={{ $json.route }}", "rightValue": "EXTERNAL_FAST_TRACK_REVIEW", "operator": { "type": "string", "operation": "equals" } }], "combinator": "and" }, "renameOutput": true, "outputKey": "fast-track-review" },
+            { "conditions": { "options": { "caseSensitive": true, "leftValue": "", "typeValidation": "strict" }, "conditions": [{ "leftValue": "={{ $json.route }}", "rightValue": "ERROR_QUEUE", "operator": { "type": "string", "operation": "equals" } }], "combinator": "and" }, "renameOutput": true, "outputKey": "error-queue" }
+          ]
+        },
+        "options": {}
+      },
+      "id": "b1c91746-11a5-48ad-a135-27979a931004",
+      "name": "04 Route by Decision",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [-100, 20]
+    },
+    {
+      "parameters": {
+        "jsCode": "return items.map(({ json }) => ({ json: { requestId: json.requestId, action: 'CREATE_COMMITTEE_SUMMARY', status: json.status, humanApprovalRequired: true, summary: `${json.requestId}: ${json.title} | risk=${json.risk} | window=${json.changeWindow}`, audit: { route: json.route, outcome: 'RECORDED', recordedAt: new Date().toISOString() } } }));"
+      },
+      "id": "b1c91746-11a5-48ad-a135-27979a931005",
+      "name": "05A Prepare Committee Summary",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [220, -220]
+    },
+    {
+      "parameters": {
+        "jsCode": "return items.map(({ json }) => ({ json: { requestId: json.requestId, action: 'OPEN_DETAILED_REVIEW', status: json.status, humanApprovalRequired: true, reasons: json.reasons, audit: { route: json.route, outcome: 'REVIEW_PENDING', recordedAt: new Date().toISOString() } } }));"
+      },
+      "id": "b1c91746-11a5-48ad-a135-27979a931006",
+      "name": "05B Open Detailed Review",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [220, -60]
+    },
+    {
+      "parameters": {
+        "jsCode": "return items.map(({ json }) => ({ json: { requestId: json.requestId, action: 'REQUEST_FAST_TRACK_HUMAN_REVIEW', status: json.status, humanApprovalRequired: true, reasons: json.reasons, audit: { route: json.route, outcome: 'REVIEW_PENDING', recordedAt: new Date().toISOString() } } }));"
+      },
+      "id": "b1c91746-11a5-48ad-a135-27979a931007",
+      "name": "05C Request Fast Track Review",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [220, 100]
+    },
+    {
+      "parameters": {
+        "jsCode": "return items.map(({ json }) => ({ json: { requestId: json.requestId, action: 'RECORD_VALIDATION_ERROR', status: json.status, humanApprovalRequired: true, reasons: json.reasons, retryable: true, audit: { route: json.route, outcome: 'ERROR_RECORDED', recordedAt: new Date().toISOString() } } }));"
+      },
+      "id": "b1c91746-11a5-48ad-a135-27979a931008",
+      "name": "05D Record Validation Error",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [220, 260]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "01 Manual Demo Trigger": { "main": [[{ "node": "02 Create Synthetic Requests", "type": "main", "index": 0 }]] },
+    "02 Create Synthetic Requests": { "main": [[{ "node": "03 Validate and Classify", "type": "main", "index": 0 }]] },
+    "03 Validate and Classify": { "main": [[{ "node": "04 Route by Decision", "type": "main", "index": 0 }]] },
+    "04 Route by Decision": { "main": [
+      [{ "node": "05A Prepare Committee Summary", "type": "main", "index": 0 }],
+      [{ "node": "05B Open Detailed Review", "type": "main", "index": 0 }],
+      [{ "node": "05C Request Fast Track Review", "type": "main", "index": 0 }],
+      [{ "node": "05D Record Validation Error", "type": "main", "index": 0 }]
+    ] }
+  },
+  "active": false,
+  "settings": { "executionOrder": "v1" },
+  "versionId": "b1c91746-11a5-48ad-a135-27979a931099",
+  "meta": { "templateCredsSetupCompleted": true },
+  "tags": []
+}

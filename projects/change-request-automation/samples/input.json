@@ -1,0 +1,37 @@
+[
+  {
+    "requestId": "CR-2026-001",
+    "title": "Update voice routing policy",
+    "ownerGroup": "communications-platform",
+    "risk": "medium",
+    "changeWindow": "2026-08-25T22:00:00Z",
+    "hasImplementationPlan": true,
+    "hasRollbackPlan": true
+  },
+  {
+    "requestId": "CR-2026-002",
+    "title": "Refresh workstation policy",
+    "ownerGroup": "workplace-services",
+    "risk": "low",
+    "changeWindow": "2026-08-26T20:00:00Z",
+    "hasImplementationPlan": true,
+    "hasRollbackPlan": true
+  },
+  {
+    "requestId": "CR-2026-003",
+    "title": "Modify edge routing",
+    "ownerGroup": "communications-platform",
+    "risk": "high",
+    "changeWindow": "2026-08-27T23:00:00Z",
+    "hasImplementationPlan": true,
+    "hasRollbackPlan": false
+  },
+  {
+    "requestId": "CR-2026-004",
+    "title": "Incomplete demonstration request",
+    "ownerGroup": "communications-platform",
+    "risk": "medium",
+    "hasImplementationPlan": true,
+    "hasRollbackPlan": true
+  }
+]

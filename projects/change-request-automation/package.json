@@ -1,0 +1,14 @@
+{
+  "name": "change-request-operations-automation",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Credential-free simulation of an operations change-request triage workflow.",
+  "type": "commonjs",
+  "scripts": {
+    "demo": "node src/demo.js",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
