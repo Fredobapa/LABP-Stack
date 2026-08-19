@@ -1,0 +1,15 @@
+{
+  "name": "labp-voice-ai-gateway",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Reproducible simulator for intent-based voice routing decisions.",
+  "type": "module",
+  "scripts": {
+    "start": "node src/server.js",
+    "demo": "node src/demo.js",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

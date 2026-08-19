@@ -1,6 +1,6 @@
 # Voice AI Gateway — Architecture
 
-**Status: design study; no voice gateway code is currently committed.**
+**Status: decision-layer simulator implemented; live voice and ARI integration are not committed.**
 
 ## Overview
 This document describes the high-level architecture of the Voice AI Gateway system.
@@ -17,16 +17,16 @@ Target capability: accept audio input from files, browser recordings, or externa
 Target capability: transform raw audio into text for downstream processing. Not implemented.
 
 ### 3. Intent Detection
-Target capability: classify transcribed text into a predefined intent with a confidence score. The current backend only performs keyword matching and does not return confidence.
+Implemented in the public simulator with deterministic keyword rules. It does not use a model or return a confidence score.
 
 ### 4. Decision Logic
-Target capability: apply business rules based on detected intent. Not implemented beyond static responses in the API prototype.
+Implemented in the public simulator for queue routing, workflow initiation, and clarification decisions. It does not execute PBX actions.
 
 ### 5. Response Generation
 Target capability: generate a textual response and optionally convert it into voice. Voice generation is not implemented.
 
 ### 6. Output
-Target capability: return the final response as text or audio. The current prototype returns JSON text only.
+The simulator returns a structured JSON decision. Audio output is not implemented.
 
 ## Notes
-This architecture is intentionally modular to allow independent evolution of each component.
+This architecture is intentionally modular to allow independent evolution of each component. See the [runnable simulator](../../projects/voice-ai-gateway/README.md).
