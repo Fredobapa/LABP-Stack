@@ -1,5 +1,7 @@
 # Voice AI Gateway Simulator
 
+[![Voice AI Gateway](https://github.com/Fredobapa/LABP-Stack/actions/workflows/voice-ai-gateway.yml/badge.svg)](https://github.com/Fredobapa/LABP-Stack/actions/workflows/voice-ai-gateway.yml)
+
 **Status: public simulator implemented; live Asterisk/ARI integration is not included.**
 
 This small Node.js project demonstrates the decision layer of an intent-based voice routing flow. It accepts a simulated transcript event, classifies it with explicit keyword rules, and returns a routing decision.
